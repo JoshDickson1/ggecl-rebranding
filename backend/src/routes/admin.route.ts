@@ -9,22 +9,32 @@ const router = Router()
 router.post("/login", async (req, res) => {
   const { email, password } = req.body
 
+  if (!email || !password) {
+    return res.status(400).json({ message: "Missing credentials" })
+  }
+
   const admin = await Admin.findOne({ email })
-  if (!admin) return res.status(401).json({ message: "Invalid credentials" })
+  if (!admin || !admin.password) {
+    return res.status(401).json({ message: "Invalid credentials" })
+  }
 
-  const valid = await bcrypt.compare(password, admin.password)
-  if (!valid) return res.status(401).json({ message: "Invalid credentials" })
+  const valid = await bcrypt.compare(String(password), admin.password)
+  if (!valid) {
+    return res.status(401).json({ message: "Invalid credentials" })
+  }
 
-  const token = jwt.sign({ id: admin._id }, process.env.JWT_SECRET!, {
-    expiresIn: "1d",
-  })
+  const token = jwt.sign(
+    { id: admin._id },
+    process.env.JWT_SECRET!,
+    { expiresIn: "1d" }
+  )
 
   res.json({ token })
 })
 
-// Logout (stateless JWT—frontend removes token)
-router.post("/logout", (_, res) => {
-  res.json({ message: "Logged out successfully" })
+// Logout (stateless)
+router.post("/logout", (_req, res) => {
+  res.json({ message: "Logged out" })
 })
 
 export default router
