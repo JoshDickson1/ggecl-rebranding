@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Search } from "lucide-react"
+import { Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Search, Link } from "lucide-react"
 import { Button } from "@/components/ui/button"
 
 export function Navbar() {
@@ -49,11 +49,11 @@ export function Navbar() {
         </div>
 
         <ul className="hidden md:flex items-center gap-8 text-slate-600 dark:text-slate-300 font-medium">
-          <li className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Home</li>
-          <li className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">About</li>
-          <li className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Services</li>
-          <li className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Blogs</li>
-          <li className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Contact</li>
+          <Link to={"/"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Home</Link>
+          <Link to={"/about"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">About</Link>
+          <Link to={"/services"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Services</Link>
+          <Link to={"/blogs"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Blogs</Link>
+          <Link to={"/contact"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Contact</Link>
         </ul>
 
         <div className="flex items-center gap-4">
