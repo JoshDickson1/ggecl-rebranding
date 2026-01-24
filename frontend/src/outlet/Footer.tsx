@@ -1,6 +1,10 @@
+import { ModeToggle } from "@/mode-toggle"
+
 const Footer = () => {
   return (
-    <div>Footer</div>
+    <div className="min-h-92">
+      <ModeToggle />
+    </div>
   )
 }
 

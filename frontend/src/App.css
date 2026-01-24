@@ -126,8 +126,3 @@
 html {
   scroll-behavior: smooth;
 }
-
-/* Ensure the body has enough padding so the fixed navbar doesn't cover content */
-body {
-  padding-top: 110px; /* Adjust based on your header's total height */
-}

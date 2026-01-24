@@ -1,68 +1,123 @@
 import { useEffect, useState } from "react"
-import { Phone, MapPin, Facebook, Instagram, Twitter, Linkedin, Search, Link } from "lucide-react"
+import {
+  Phone,
+  MapPin,
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Search,
+  PanelRight,
+  X,
+} from "lucide-react"
+import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
 
 export function Navbar() {
   const [isAtTop, setIsAtTop] = useState(true)
+  const [menuOpen, setMenuOpen] = useState(false)
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsAtTop(window.scrollY < 50)
-    }
+    const handleScroll = () => setIsAtTop(window.scrollY < 50)
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 transition-all duration-300">
-      {/* Top Bar - Hidden on scroll */}
-      <div 
-        className={`bg-[#1e3a5f] px-10 text-white py-2 px-6 flex justify-between items-center transition-all duration-300 overflow-hidden ${
-          isAtTop ? "h-10 opacity-100" : "h-0 opacity-0"
-        }`}
-      >
-        <div className="flex items-center gap-6 text-xs font-light">
-          <div className="flex items-center gap-2">
-            <Phone size={14} className="text-blue-300" />
-            <span>+44 (0) 330 113 7424</span>
-          </div>
-          <div className="md:flex hidden items-center gap-2">
-            <MapPin size={14} className="text-blue-300" />
-            <span>148 Rose Bowl, Portland Crescent, United Kingdom.</span>
-          </div>
-        </div>
-        <div className="flex items-center gap-4">
-          <Facebook size={16} className="cursor-pointer hover:text-blue-300" />
-          <Instagram size={16} className="cursor-pointer hover:text-blue-300" />
-          <Twitter size={16} className="cursor-pointer hover:text-blue-300" />
-          <Linkedin size={16} className="cursor-pointer hover:text-blue-300" />
-        </div>
-      </div>
-
-      {/* Main Navigation */}
-      <nav className="bg-white px-10 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 px-6 py-4 flex justify-between items-center shadow-sm">
-        <div className="flex items-center gap-2">
-          {/* Replace with your actual logo img */}
-          <div className="w-20 h-20 dark:bg-zinc-200 bg-zinc-100 rounded-full flex items-center justify-center border-2 border-blue-900 overflow-hidden">
-             <img src="/ggecl_logo.png" alt="Golden Goshen Education Consultancy (GGECL) Logo" className="w-30 h-30 object-contain" />
+    <>
+      <header className="fixed top-0 left-0 right-0 z-50">
+        {/* Top Bar */}
+        <div
+          className={`bg-[#1e3a5f] text-white transition-all duration-300 overflow-hidden ${
+            isAtTop ? "h-10 opacity-100" : "h-0 opacity-0"
+          }`}
+        >
+          <div className="flex justify-between items-center h-10 px-4 md:px-10 text-sm">
+            <div className="flex items-center gap-6">
+              <div className="flex items-center gap-2">
+                <Phone size={14} className="text-blue-300" />
+                <span>+44 (0) 330 113 7424</span>
+              </div>
+              <div className="hidden md:flex items-center gap-2">
+                <MapPin size={14} className="text-blue-300" />
+                <span>148 Rose Bowl, Portland Crescent, UK</span>
+              </div>
+            </div>
+            <div className="flex gap-4">
+              <Facebook size={16} />
+              <Instagram size={16} />
+              <Twitter size={16} />
+              <Linkedin size={16} />
+            </div>
           </div>
         </div>
 
-        <ul className="hidden md:flex items-center gap-8 text-slate-600 dark:text-slate-300 font-medium">
-          <Link to={"/"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Home</Link>
-          <Link to={"/about"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">About</Link>
-          <Link to={"/services"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Services</Link>
-          <Link to={"/blogs"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Blogs</Link>
-          <Link to={"/contact"} className="hover:text-blue-900 dark:hover:text-white cursor-pointer transition-colors">Contact</Link>
-        </ul>
+        {/* Main Nav */}
+        <nav className="bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+          <div className="flex items-center justify-between px-4 md:px-10 py-4">
+            {/* Logo */}
+            <Link to="/" className="flex items-center bg-zinc-100 p-0 border-2 border-[#1e3a5f] rounded-full">
+              <img
+                src="/ggecl_logo.png"
+                alt="GGECL Logo"
+                className="h-14 w-14 md:h-20 md:w-20 object-contain"
+              />
+            </Link>
 
-        <div className="flex items-center gap-4">
-          <Search size={20} className="text-slate-500 cursor-pointer hover:text-blue-900" />
-          <Button className="bg-[#1e3a5f] hover:bg-[#2a5288] text-white px-6 rounded-md">
-            Get Started
-          </Button>
+            {/* Desktop Links */}
+            <ul className="hidden md:flex gap-8 text-slate-600 dark:text-slate-300 font-medium">
+              <Link to="/">Home</Link>
+              <Link to="/about">About</Link>
+              <Link to="/services">Services</Link>
+              <Link to="/blogs">Blogs</Link>
+              <Link to="/contact">Contact</Link>
+            </ul>
+
+            {/* Desktop Actions */}
+            <div className="hidden md:flex items-center gap-14">
+              <Search size={20} className="text-slate-500" />
+              <Button className="h-13 px-10 text-white bg-[#1e3a5f] hover:bg-[#2a5288]">
+                Get Started
+              </Button>
+            </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden"
+              onClick={() => setMenuOpen(true)}
+            >
+              <PanelRight size={28} />
+            </button>
+          </div>
+        </nav>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-[100] bg-white/60 dark:bg-black/60 backdrop-blur-md flex flex-col items-center justify-center">
+          <button
+            className="absolute top-6 right-6 text-white"
+            onClick={() => setMenuOpen(false)}
+          >
+            <X size={32} />
+          </button>
+
+          <div className="flex flex-col items-center gap-8 text-white text-xl font-medium">
+            <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
+            <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
+            <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
+            <Link to="/blogs" onClick={() => setMenuOpen(false)}>Blogs</Link>
+            <Link to="/contact" onClick={() => setMenuOpen(false)}>Contact</Link>
+
+            <div className="flex gap-6 mt-6">
+              {/* <Search size={22} /> */}
+              <Button className="h-12 px-8 bg-[#1e3a5f] text-white hover:bg-[#2a5288]">
+                Get Started
+              </Button>
+            </div>
+          </div>
         </div>
-      </nav>
-    </header>
+      )}
+    </>
   )
 }

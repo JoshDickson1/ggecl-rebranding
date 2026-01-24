@@ -1,5 +1,4 @@
 import { PageHero } from "@/components_/PageHero"
-import { ModeToggle } from "@/mode-toggle"
 
 const About = () => {
   return (
@@ -13,7 +12,6 @@ const About = () => {
             { label: "About Us" },
           ]}
         />
-        <ModeToggle />
       </div>
     </div>
   )

@@ -22,7 +22,7 @@ export function PageHero({
   return (
     <section
       className={cn(
-        "relative h-[360px] w-full overflow-hidden",
+        "relative h-[360px] mt-10 md:mt-20 w-full overflow-hidden",
         className
       )}
     >
