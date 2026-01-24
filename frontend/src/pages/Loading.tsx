@@ -1,7 +1,9 @@
-const Loading = () => {
+export function Loading() {
   return (
-    <div>Loading</div>
+    <div className="min-h-screen flex items-center justify-center bg-background text-foreground">
+      <h1 className="text-2xl font-semibold animate-pulse">
+        Loading…
+      </h1>
+    </div>
   )
 }
-
-export default Loading

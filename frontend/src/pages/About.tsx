@@ -1,6 +1,21 @@
+import { PageHero } from "@/components_/PageHero"
+import { ModeToggle } from "@/mode-toggle"
+
 const About = () => {
   return (
-    <div>About</div>
+    <div>
+      <div className="">
+        <PageHero
+          title="About Us"
+          backgroundImage="/otherhero.svg"
+          breadcrumbs={[
+            { label: "Home", href: "/" },
+            { label: "About Us" },
+          ]}
+        />
+        <ModeToggle />
+      </div>
+    </div>
   )
 }
 

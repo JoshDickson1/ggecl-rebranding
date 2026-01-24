@@ -1,14 +1,43 @@
+import { useEffect, useState } from "react"
+import { BrowserRouter, Routes, Route } from "react-router-dom"
+
 import { ThemeProvider } from "@/theme-provider"
-import { ModeToggle } from "@/mode-toggle"
+
+import Layout from "@/outlet/Layout"
+import { Loading } from "@/pages/Loading"
+import { NotFound } from "@/pages/NotFound"
+import Home from "@/pages/Home"
+import About from "@/pages/About"
+
 import "./App.css"
 
 export function App() {
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 400)
+
+    return () => clearTimeout(timer)
+  }, [])
+
+  if (loading) return <Loading />
+
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
-      <div className="min-h-screen bg-background text-foreground flex flex-col items-center justify-center">
-        <h1 className="text-2xl font-bold mb-4">Hello World</h1>
-        <ModeToggle />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          {/* Layout route */}
+          <Route element={<Layout />}>
+            <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+          </Route>
+
+          {/* No layout */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </ThemeProvider>
   )
 }
