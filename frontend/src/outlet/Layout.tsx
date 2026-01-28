@@ -13,7 +13,7 @@ const Layout = () => {
         <Outlet />
       </main>
 
-      <footer className="h-14 border-t flex items-center justify-center text-sm">
+      <footer className="h-14 flex items-center justify-center text-sm">
         <Footer />
       </footer>
     </div>

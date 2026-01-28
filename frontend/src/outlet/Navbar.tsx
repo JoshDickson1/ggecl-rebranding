@@ -56,7 +56,7 @@ export function Navbar() {
         <nav className="bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm">
           <div className="flex items-center justify-between px-4 md:px-10 py-4">
             {/* Logo */}
-            <Link to="/" className="flex items-center bg-zinc-100 p-0 border-2 border-[#1e3a5f] rounded-full">
+            <Link to="/" className="flex items-center bg-zinc-100 p-0 border-2 border-[#1e3a5f]/50 rounded-full">
               <img
                 src="/ggecl_logo.png"
                 alt="GGECL Logo"
@@ -76,9 +76,9 @@ export function Navbar() {
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center gap-14">
               <Search size={20} className="text-slate-500" />
-              <Button className="h-13 px-10 text-white bg-[#1e3a5f] hover:bg-[#2a5288]">
+              <button className="h-13 px-10 text-white rounded-xl transition-color cursor-pointer bg-[#1e3a5f] hover:bg-[#2a5288]">
                 Get Started
-              </Button>
+              </button>
             </div>
 
             {/* Mobile Menu Button */}
@@ -96,13 +96,13 @@ export function Navbar() {
       {menuOpen && (
         <div className="fixed inset-0 z-[100] bg-white/60 dark:bg-black/60 backdrop-blur-md flex flex-col items-center justify-center">
           <button
-            className="absolute top-6 right-6 text-white"
+            className="absolute top-6 right-6 text-zinc-900 dark:text-white"
             onClick={() => setMenuOpen(false)}
           >
             <X size={32} />
           </button>
 
-          <div className="flex flex-col items-center gap-8 text-white text-xl font-medium">
+          <div className="flex flex-col items-center gap-8 text-zinc-950 dark:text-white text-xl font-medium">
             <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
             <Link to="/about" onClick={() => setMenuOpen(false)}>About</Link>
             <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>

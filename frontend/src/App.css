@@ -122,6 +122,36 @@
   }
 }
 
+@keyframes slowGlowMove {
+  0% { background-position: 50% 50%; }
+  50% { background-position: 55% 45%; }
+  100% { background-position: 50% 50%; }
+}
+
+.glow-btn {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-btn::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: radial-gradient(circle at center, rgba(59,130,246,0.4), transparent 60%);
+  animation: slowGlowMove 8s ease-in-out infinite;
+  opacity: 0.6;
+}
+
+.glow-btn > * {
+  position: relative;
+  z-index: 2;
+}
+
+.glow-btn:hover::before {
+  opacity: 1;
+  transition: opacity 0.4s ease;
+}
+
 
 html {
   scroll-behavior: smooth;
