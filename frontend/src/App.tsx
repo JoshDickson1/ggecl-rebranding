@@ -42,10 +42,11 @@ export function App() {
             {/* Blog Routes */}
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:id" element={<SingleBlogPage />} />
-          </Route>
+
 
           {/* 404 Route outside of main Layout */}
           <Route path="*" element={<NotFound />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </ThemeProvider>
