@@ -66,7 +66,7 @@ const StudyPrograms = () => {
   }
 
   return (
-    <section className="max-w-7xl mx-auto px-6 py-20 bg-white dark:bg-zinc-950 transition-colors duration-300">
+    <section className="max-w-7xl mx-auto px-6 py-20 bg-white dark:bg-slate-950 transition-colors duration-300">
       {/* Header Section */}
       <div className="flex flex-col md:flex-row justify-between items-start mb-16 gap-6">
         <div className="w-full flex justify-center md:justify-start">

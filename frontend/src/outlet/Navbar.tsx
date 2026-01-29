@@ -57,7 +57,7 @@ export function Navbar() {
         </div>
 
         {/* Main Nav */}
-        <nav className="bg-white dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800 shadow-sm">
+        <nav className="bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl">
           <div className="flex items-center justify-between px-4 md:px-10 py-4">
             {/* Logo */}
             <Link to="/" className="flex items-center bg-zinc-100 p-0 border-2 border-[#1e3a5f]/50 rounded-full">
@@ -80,8 +80,10 @@ export function Navbar() {
             {/* Desktop Actions */}
             <div className="hidden md:flex items-center gap-14">
               <Search size={20} className="text-slate-500" />
-              <button className="h-13 px-10 text-white rounded-xl transition-color cursor-pointer bg-[#1e3a5f] hover:bg-[#2a5288]">
-                Get Started
+              <button 
+                onClick={()=> window.open("https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform", "_blank")}
+                className="h-13 px-10 text-white rounded-xl transition-color cursor-pointer bg-[#1e3a5f] hover:bg-[#2a5288]">
+                Apply Now
               </button>
             </div>
 
@@ -115,8 +117,10 @@ export function Navbar() {
 
             <div className="flex gap-6 mt-6">
               {/* <Search size={22} /> */}
-              <Button className="h-12 px-8 bg-[#1e3a5f] text-white hover:bg-[#2a5288]">
-                Get Started
+              <Button 
+                onClick={()=> window.open("https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform", "_blank")}
+                className="h-12 px-8 bg-[#1e3a5f] text-white hover:bg-[#2a5288]">
+                Apply Now
               </Button>
             </div>
           </div>

@@ -88,6 +88,7 @@ const ServicesSlider = () => {
 
                 {/* Button Styled exactly as screenshot */}
                 <motion.button
+                  onClick={()=> {"https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform"}}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className={`w-full py-4 px-6 rounded-lg border-2 flex items-center justify-between font-bold transition-all duration-300 ${
@@ -96,7 +97,7 @@ const ServicesSlider = () => {
                       : "bg-white text-[#1e2a44] border-[#1e2a44] hover:bg-[#1e3a5f] hover:text-white hover:border-white"
                   }`}
                 >
-                  Get Started
+                  Apply Now
                   <div className={`rounded-full border-2 p-1 ${service.primary ? "border-white" : "border-[#1e2a44] group-hover:border-white"}`}>
                     <ChevronRight size={18} />
                   </div>

@@ -5,7 +5,7 @@ import { PageHero } from "@/components_/PageHero"
 import RelatedBlogs from "./RelatedBlogs"
 import CTA from "./CTA"
 import { Calendar, User, Tag, ChevronLeft, ChevronRight, X } from "lucide-react"
-import { blogs } from "@/data/Blogs"
+import { blogs } from "@/data/blogs"
 import { NotFound } from "@/pages/NotFound"
 
 const SingleBlogPage = () => {
