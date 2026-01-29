@@ -34,7 +34,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full min-h-screen flex items-center bg-white dark:bg-slate-950 overflow-hidden py-20 px-6">
+    <section className="relative w-full mt-12 h-full md:h-screen flex items-center bg-white dark:bg-slate-950 overflow-hidden py-20 px-6">
       {/* Animated Blurred Ball - Bottom Left */}
 <motion.div
   animate={{
@@ -74,10 +74,10 @@ const Hero = () => {
         >
           <motion.h1 
             variants={itemVariants}
-            className="text-5xl md:text-5xl font-black text-slate-900 dark:text-white leading-[0.95] tracking-tighter uppercase"
+            className="text-xl md:text-5xl font-black text-slate-900 dark:text-white leading-[0.95] tracking-tighter uppercase"
           >
             ACHIEVE MORE, <br />
-            <span className="text-[#1e3a5f] dark:text-blue-400 text-6xl md:text-7xl">STUDY ABROAD</span>
+            <span className="text-[#1e3a5f] dark:text-blue-400 text-4xl md:text-7xl">STUDY ABROAD</span>
           </motion.h1>
 
           <motion.p 

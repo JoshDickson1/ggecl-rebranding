@@ -13,7 +13,7 @@ import {
   Youtube,
 } from "lucide-react"
 import { Link } from "react-router-dom"
-import { Button } from "@/components/ui/button"
+// import { Button } from "@/components/ui/button"
 
 export function Navbar() {
   const [isAtTop, setIsAtTop] = useState(true)
@@ -30,7 +30,7 @@ export function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50">
         {/* Top Bar */}
         <div
-          className={`bg-[#1e3a5f] text-white transition-all duration-300 overflow-hidden ${
+          className={`bg-[#1e3a5f] text-white transition-all duration-300 md:flex hidden overflow-hidden ${
             isAtTop ? "h-10 opacity-100" : "h-0 opacity-0"
           }`}
         >
@@ -117,11 +117,11 @@ export function Navbar() {
 
             <div className="flex gap-6 mt-6">
               {/* <Search size={22} /> */}
-              <Button 
+              <button 
                 onClick={()=> window.open("https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform", "_blank")}
-                className="h-12 px-8 bg-[#1e3a5f] text-white hover:bg-[#2a5288]">
+                className="h-12 rounded-md px-8 bg-[#1e3a5f] text-white hover:bg-[#2a5288]">
                 Apply Now
-              </Button>
+              </button>
             </div>
           </div>
         </div>

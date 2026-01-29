@@ -6,8 +6,6 @@ import {
   Linkedin, 
   Send, 
   ArrowUpRight, 
-  Mail, 
-  Phone, 
   MapPin 
 } from "lucide-react";
 import { ModeToggle } from "@/mode-toggle";

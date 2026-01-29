@@ -53,8 +53,9 @@ const ServicesSlider = () => {
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">
-            WE PROVIDE <span className="text-[#1e3a5f] dark:text-blue-400">SERVICES</span>
+          <h2 className="text-5xl font-black text-slate-900 dark:text-slate-50 leading-[0.9] tracking-tighter uppercase">
+            We Provide <br />
+            <span className="text-[#1e3a5f] dark:text-blue-400">Services</span>
           </h2>
           <p className="text-lg text-slate-600 dark:text-slate-400 mt-2 font-medium">
             We are an accredited UK Register Of Learning Providers
