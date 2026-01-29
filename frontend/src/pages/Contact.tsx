@@ -70,13 +70,13 @@ export default function ContactPage() {
             </div>
 
             <div className="flex justify-center md:justify-end">
-              <Button 
+              <button 
                 type="submit" 
                 disabled={state.submitting}
                 className="bg-[#1e3a5f] hover:bg-[#2a5288] text-white rounded-full px-10 h-12 text-lg transition-transform active:scale-95"
               >
                 {state.submitting ? "Sending..." : "Send A Message"}
-              </Button>
+              </button>
             </div>
           </form>
         </div>

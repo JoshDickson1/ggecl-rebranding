@@ -10,7 +10,7 @@ const CTA = () => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="relative overflow-hidden bg-[#1e3a5f] text-white rounded-[2.5rem] p-10 md:p-20 shadow-2xl border border-white/10"
+        className="relative overflow-hidden bg-[#1e3a5f] dark:bg-slate-900 text-white rounded-[2.5rem] p-10 md:p-20 shadow-2xl border border-white/10"
       >
         {/* Vercel-style Grid Overlay */}
         <div
@@ -25,8 +25,8 @@ const CTA = () => {
         />
 
         {/* Decorative Radial Glow */}
-        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400/20 rounded-full blur-[100px]" />
-        <div className="absolute -bottom-24 -left-24 w-96 h-96 bg-indigo-500/20 rounded-full blur-[100px]" />
+        <div className="absolute -top-24 -right-24 w-96 h-96 bg-blue-400/20 dark:bg-blue-500/20 rounded-full blur-[100px]" />
+        <div className="absolute -bottom-24 -left-24 w-96 h-96 dark:bg-blue-800/20 bg-blue-600/20 rounded-full blur-[100px]" />
 
         <div className="relative z-10 flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
           <motion.h3 

@@ -1,7 +1,7 @@
 const SubHero = () => {
   return (
     <div>
-        <div className="bg-[#1e2a44] w-full py-5 md:py-10 flex items-center justify-center">
+        <div className="bg-[#1e2a44] dark:bg-slate-900 w-full py-5 md:py-10 flex items-center justify-center">
             {/* SubHero Images (flexbox) */}
             <div className="w-full px-4 flex flex-wrap gap-6 md:gap-8 justify-center md:justify-evenly items-center animate-fade-in">
                 <img 

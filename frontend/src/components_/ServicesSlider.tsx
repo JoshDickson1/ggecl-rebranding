@@ -13,7 +13,7 @@ const SERVICES = [
     title: "Consultation",
     description: "We offer tailored guidance and expert advice for academic and career success, providing information on universities, global rankings, and available scholarships.",
     icon: <Hammer size={32} />,
-    primary: true, // This mimics the dark button in your screenshot
+    primary: true, 
   },
   {
     title: "Document Review",
@@ -49,57 +49,58 @@ const ServicesSlider = () => {
   };
 
   return (
-    <section className="bg-slate-50 py-24 px-6 overflow-hidden">
+    <section className="bg-white dark:bg-slate-950 py-24 px-6 overflow-hidden transition-colors duration-300">
       <div className="max-w-7xl mx-auto">
         {/* Header Section */}
         <div className="mb-16">
-          <h2 className="text-4xl md:text-5xl font-black text-slate-900 uppercase tracking-tighter">
-            WE PROVIDE <span className="text-[#1e2a44]">SERVICES</span>
+          <h2 className="text-4xl md:text-5xl font-black text-slate-900 dark:text-white uppercase tracking-tighter">
+            WE PROVIDE <span className="text-[#1e3a5f] dark:text-blue-400">SERVICES</span>
           </h2>
-          <p className="text-lg text-slate-600 mt-2 font-medium">
+          <p className="text-lg text-slate-600 dark:text-slate-400 mt-2 font-medium">
             We are an accredited UK Register Of Learning Providers
           </p>
         </div>
 
         {/* Cards Container */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16 relative min-h-[420px]">
           <AnimatePresence mode="popLayout" initial={false}>
             {SERVICES.slice(currentIndex, currentIndex + 3).map((service) => (
               <motion.div
                 key={service.title}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5, ease: "circOut" }}
-                className="bg-white p-10 rounded-[1.5rem] shadow-2xl shadow-slate-200/60 flex flex-col h-full min-h-[420px]"
+                initial={{ opacity: 0, scale: 0.9, x: 20 }}
+                animate={{ opacity: 1, scale: 1, x: 0 }}
+                exit={{ opacity: 0, scale: 0.9, x: -20 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-xl shadow-slate-200/50 dark:shadow-none border border-transparent dark:border-slate-800 flex flex-col h-full group"
               >
                 {/* Icon */}
-                <div className="text-[#1e2a44] mb-6">
+                <div className="text-[#1e3a5f] dark:text-blue-400 mb-6 transition-transform duration-300 group-hover:scale-110">
                   {service.icon}
                 </div>
 
                 {/* Content */}
-                <h3 className="text-2xl font-black text-slate-900 mb-4 tracking-tight">
+                <h3 className="text-2xl font-black text-slate-900 dark:text-white mb-4 tracking-tight uppercase">
                   {service.title}
                 </h3>
-                <p className="text-slate-500 leading-relaxed mb-10 flex-grow">
+                <p className="text-slate-500 dark:text-slate-400 leading-relaxed mb-10 flex-grow font-medium">
                   {service.description}
                 </p>
 
-                {/* Button Styled exactly as screenshot */}
+                {/* Button */}
                 <motion.button
-                  onClick={()=> {"https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform"}}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className={`w-full py-4 px-6 rounded-lg border-2 flex items-center justify-between font-bold transition-all duration-300 ${
+                  className={`w-full py-4 px-6 rounded-xl border-2 flex items-center justify-between font-bold transition-all duration-300 uppercase tracking-widest text-xs ${
                     service.primary 
-                      ? "bg-[#1e2a44] text-white border-[#1e2a44]" 
-                      : "bg-white text-[#1e2a44] border-[#1e2a44] hover:bg-[#1e3a5f] hover:text-white hover:border-white"
+                      ? "bg-[#1e3a5f] text-white border-[#1e3a5f] shadow-lg shadow-blue-900/20" 
+                      : "bg-transparent text-[#1e3a5f] border-[#1e3a5f] dark:text-white dark:border-slate-700 hover:bg-[#1e3a5f] hover:text-white hover:border-[#1e3a5f]"
                   }`}
                 >
-                  Apply Now
-                  <div className={`rounded-full border-2 p-1 ${service.primary ? "border-white" : "border-[#1e2a44] group-hover:border-white"}`}>
-                    <ChevronRight size={18} />
+                  Get Started
+                  <div className={`rounded-full border-2 p-1 transition-colors ${
+                    service.primary ? "border-white" : "border-[#1e3a5f] dark:border-slate-700 group-hover:border-white"
+                  }`}>
+                    <ChevronRight size={16} />
                   </div>
                 </motion.button>
               </motion.div>
@@ -112,16 +113,16 @@ const ServicesSlider = () => {
           <Button
             onClick={prevSlide}
             disabled={currentIndex === 0}
-            className="h-10 w-20 rounded-xl bg-[#1e2a44] hover:bg-slate-400 disabled:opacity-30 shadow-lg transition-all"
+            className="h-12 w-20 rounded-2xl bg-slate-200 dark:bg-slate-800 text-slate-600 dark:text-white hover:bg-[#1e3a5f] hover:text-white transition-all disabled:opacity-20 border-none"
           >
-            <ArrowLeft size={28} className="text-white" />
+            <ArrowLeft size={24} />
           </Button>
           <Button
             onClick={nextSlide}
             disabled={currentIndex + 3 >= SERVICES.length}
-            className="h-10 w-20 rounded-xl bg-[#1e2a44] hover:bg-blue-900 disabled:opacity-30 shadow-lg transition-all"
+            className="h-12 w-24 rounded-2xl bg-[#1e3a5f] text-white hover:bg-blue-800 transition-all disabled:opacity-20 border-none shadow-lg shadow-blue-900/20"
           >
-            <ArrowRight size={28} className="text-white" />
+            <ArrowRight size={24} />
           </Button>
         </div>
       </div>
