@@ -17,6 +17,9 @@ const BLOGS = [
   { id: 4, title: "Modern Classrooms", image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800", category: "Education", tags: ["Design", "Tech"] },
   { id: 5, title: "Digital Literacy", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800", category: "Education", tags: ["Tech", "Learning"] },
   { id: 6, title: "University Growth", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800", category: "University", tags: ["Future", "Success"] },
+  { id: 7, title: "Digital Literacy", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800", category: "Education", tags: ["Tech", "Learning"] },
+  { id: 8, title: "University Growth", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800", category: "University", tags: ["Future", "Success"] },
+
 ]
 
 const CATEGORIES = ["University", "Education", "Lifestyle", "Innovation"]
@@ -68,11 +71,11 @@ export function BlogContent() {
           <AnimatePresence mode="wait">
             <motion.div
               key={currentIndex}
-              initial={{ opacity: 0, y: 15 }} // Subtle Y-axis enter
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -15 }} // Subtle Y-axis exit
+              initial={{ opacity: 0, x: 15 }} // Subtle X-axis enter
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -15 }} // Subtle X-axis exit
               transition={{ duration: 0.5, ease: "easeOut" }}
-              className="relative aspect-[21/9] w-full overflow-hidden rounded-[2rem] group border border-slate-200 dark:border-slate-800 shadow-lg"
+              className="relative w-full h-92 md:h-[300px] md:aspect-[21/9] w-full overflow-hidden rounded-[2rem] group border border-slate-200 dark:border-slate-800 shadow-lg"
             >
               <Link to={`/blogs/${BLOGS[currentIndex].id}`}>
                 <img 
@@ -139,16 +142,11 @@ export function BlogContent() {
             </div>
           </div>
 
-          <motion.div layout className={cn("grid gap-8", view === "grid" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1")}>
+          <div className={cn("grid gap-8", view === "grid" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1")}>
             <AnimatePresence mode="popLayout">
               {paginatedBlogs.map((blog) => (
-                <motion.div
-                  layout
+                <div
                   key={blog.id}
-                  initial={{ opacity: 0, y: 10 }} // Subtly enter from bottom
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: 10 }}
-                  transition={{ duration: 0.35 }}
                   className={cn(
                     "group bg-white dark:bg-slate-900 rounded-[2rem] flex flex-col overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300",
                     view === "list" && "flex flex-col md:flex-row h-full md:min-h-60"
@@ -184,10 +182,10 @@ export function BlogContent() {
                       </Link>
                     </div>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </AnimatePresence>
-          </motion.div>
+          </div>
 
           {totalPages > 1 && (
             <div className="flex justify-center items-center gap-2 pt-10">

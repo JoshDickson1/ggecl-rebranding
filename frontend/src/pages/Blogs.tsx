@@ -1,7 +1,6 @@
 import CTA from "@/components_/CTA"
 import { PageHero } from "@/components_/PageHero"
 import { BlogContent } from "@/components_/BlogContent"
-import SingleBlogPage from "@/components_/SingleBlogPage"
 
 const Blogs = () => {
   return (
@@ -18,10 +17,6 @@ const Blogs = () => {
 
       <div className="mt-20">
         <CTA />
-      </div>
-
-      <div className="">
-        <SingleBlogPage />
       </div>
     </div>
   )

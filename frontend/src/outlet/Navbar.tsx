@@ -9,6 +9,8 @@ import {
   Search,
   PanelRight,
   X,
+  Send,
+  Youtube,
 } from "lucide-react"
 import { Link } from "react-router-dom"
 import { Button } from "@/components/ui/button"
@@ -48,6 +50,8 @@ export function Navbar() {
               <Instagram size={16} />
               <Twitter size={16} />
               <Linkedin size={16} />
+              <Send size={16} />
+              <Youtube size={16} />
             </div>
           </div>
         </div>

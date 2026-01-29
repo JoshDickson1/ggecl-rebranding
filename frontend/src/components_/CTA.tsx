@@ -1,5 +1,6 @@
 import { motion } from "framer-motion"
 import { ExternalLink } from "lucide-react"
+import { Link } from "react-router-dom"
 
 const CTA = () => {
   return (
@@ -52,10 +53,10 @@ assignments, groups, and more — built for modern education.
             whileTap={{ scale: 0.98 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <button className="bg-white text-[#1e3a5f] hover:bg-blue-50 rounded-full px-14 py-4 text-lg font-bold shadow-xl flex gap-3 group">
+            <Link to="https://lms.ggecl.com" className="bg-white text-[#1e3a5f] hover:bg-blue-50 rounded-full px-14 py-4 text-lg font-bold shadow-xl flex gap-3 group">
               Visit Our LMS
               <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-            </button>
+            </Link>
           </motion.div>
         </div>
       </motion.div>
