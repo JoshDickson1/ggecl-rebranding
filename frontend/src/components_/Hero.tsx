@@ -34,7 +34,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full mt-12 h-full md:h-screen flex items-center bg-white dark:bg-slate-950 overflow-hidden py-20 px-6">
+    <section className="relative w-full h-full md:h-screen flex items-center bg-white dark:bg-slate-950 overflow-hidden py-0 pt-15 md:pt-0 md:py-20 px-6">
       {/* Animated Blurred Ball - Bottom Left */}
 <motion.div
   animate={{
@@ -61,7 +61,7 @@ const Hero = () => {
     repeat: Infinity,
     ease: "easeInOut",
   }}
-  className="absolute -top-4 -left-2 w-96 h-96 rounded-full blur-[100px] opacity-20 dark:opacity-10 z-10 bg-gradient-to-tr from-[#1e3a5f] to-blue-400"
+  className="absolute -top-4 -left-2 md:flex hidden w-96 h-96 rounded-full blur-[100px] opacity-10 md:opacity-20 dark:opacity-10 z-10 bg-gradient-to-tr from-[#1e3a5f] to-blue-400"
 />
       <div className="max-w-screen mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
@@ -87,12 +87,12 @@ const Hero = () => {
             Discover world-class education and a vibrant, diverse culture. Studying Abroad opens doors to top-tier universities, innovative research, and global career prospects.
           </motion.p>
 
-          <motion.div variants={itemVariants} className="flex gap-4 md:justify-start justify-center pt-4">
+          <motion.div variants={itemVariants} className="flex gap-4 md:justify-start pt-4">
             <motion.button
             onClick={() => navigate("https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="px-10 py-4 bg-[#1e3a5f] text-white rounded-full font-bold text-lg shadow-xl shadow-blue-900/20 transition-all uppercase tracking-widest"
+              className="md:px-10 px-5 py-3 md:py-4 bg-[#1e3a5f] text-white rounded-full font-bold text-sm md:text-lg shadow-xl shadow-blue-900/20 transition-all uppercase tracking-widest"
             >
               Apply Now
             </motion.button>
@@ -100,7 +100,7 @@ const Hero = () => {
             onClick={() => navigate("/about")}
               whileHover={{ scale: 1.05, backgroundColor: "rgba(30, 58, 95, 0.05)" }}
               whileTap={{ scale: 0.95 }}
-              className="px-5 md:px-10 py-3 md:py-4 border-2 border-slate-200 dark:border-slate-800 text-[#1e3a5f] dark:text-slate-200 rounded-full font-bold text-lg transition-all uppercase tracking-widest"
+              className="px-5 md:px-10 py-3 md:py-4 border-2 border-slate-200 dark:border-slate-800 text-[#1e3a5f] dark:text-slate-200 rounded-full font-bold text-sm md:text-lg transition-all uppercase tracking-widest"
             >
               Learn More
             </motion.button>
@@ -110,7 +110,7 @@ const Hero = () => {
         {/* Right Side: Animated Image Composition */}
         <motion.div
           animate={floatAnimation}
-          className="relative w-full aspect-square md:aspect-auto h-full min-h-[600px]"
+          className="relative w-full aspect-square md:aspect-auto h-full min-h-[200px] md:min-h-[600px]"
         >
           <img src="hero.png" alt="" className="" />
         </motion.div>
