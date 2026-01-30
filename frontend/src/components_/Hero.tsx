@@ -34,7 +34,7 @@ const Hero = () => {
   };
 
   return (
-    <section className="relative w-full h-full md:h-screen flex items-center bg-white dark:bg-slate-950 overflow-hidden py-0 pt-15 md:pt-0 md:py-20 px-6">
+    <section className="relative w-full h-full md:h-screen flex items-center bg-white dark:bg-slate-950 overflow-hidden py-0 pt-15 md:pt-0 md:py-0 px-6">
       {/* Animated Blurred Ball - Bottom Left */}
 <motion.div
   animate={{
@@ -89,7 +89,7 @@ const Hero = () => {
 
           <motion.div variants={itemVariants} className="flex gap-4 md:justify-start pt-4">
             <motion.button
-            onClick={() => navigate("https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform")}
+            onClick={() => navigate("/apply")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="md:px-10 px-5 py-3 md:py-4 bg-[#1e3a5f] text-white rounded-full font-bold text-sm md:text-lg shadow-xl shadow-blue-900/20 transition-all uppercase tracking-widest"

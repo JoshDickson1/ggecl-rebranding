@@ -12,12 +12,13 @@ import {
   Send,
   Youtube,
 } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 // import { Button } from "@/components/ui/button"
 
 export function Navbar() {
   const [isAtTop, setIsAtTop] = useState(true)
   const [menuOpen, setMenuOpen] = useState(false)
+  const navigate = useNavigate()
 
   useEffect(() => {
     const handleScroll = () => setIsAtTop(window.scrollY < 50)
@@ -30,7 +31,7 @@ export function Navbar() {
       <header className="fixed top-0 left-0 right-0 z-50">
         {/* Top Bar */}
         <div
-          className={`bg-[#1e3a5f] text-white transition-all duration-300 md:flex hidden overflow-hidden ${
+          className={`bg-[#1e3a5f] text-white transition-all duration-300 md:block hidden overflow-hidden ${
             isAtTop ? "h-10 opacity-100" : "h-0 opacity-0"
           }`}
         >
@@ -81,7 +82,7 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-14">
               <Search size={20} className="text-slate-500" />
               <button 
-                onClick={()=> window.open("https://docs.google.com/forms/d/e/1FAIpQLSdYbDNQn9zYvD0GQFNPI3HDEBchzR0H39IeFzW2JSuUuQOh7w/viewform", "_blank")}
+                onClick={() => navigate("/apply")}
                 className="h-13 px-10 text-white rounded-xl transition-color cursor-pointer bg-[#1e3a5f] hover:bg-[#2a5288]">
                 Apply Now
               </button>
