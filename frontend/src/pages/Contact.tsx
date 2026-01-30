@@ -15,7 +15,7 @@ import {
 import { PageHero } from "@/components_/PageHero";
 
 export default function ContactPage() {
-  const [state, handleSubmit] = useForm("https://formspree.io/f/xojdgarp");
+  const [state, handleSubmit] = useForm("xojdgarp");
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   // Open dialog when form state changes to succeeded
