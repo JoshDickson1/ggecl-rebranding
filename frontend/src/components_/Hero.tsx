@@ -47,7 +47,7 @@ const Hero = () => {
     repeat: Infinity,
     ease: "easeInOut",
   }}
-  className="absolute -bottom-4 -right-2 w-96 h-96 rounded-full blur-[100px] opacity-20 dark:opacity-30 z-10 bg-gradient-to-tr from-[#1e3a5f] to-blue-400"
+  className="absolute -bottom-4 -right-2 w-30 h-30 md:w-96 md:h-96 rounded-full blur-[100px] opacity-20 dark:opacity-30 z-10 bg-gradient-to-tr from-[#1e3a5f] to-blue-400"
 />
       {/* Animated Blurred Ball - Bottom Left */}
 <motion.div
@@ -89,7 +89,7 @@ const Hero = () => {
 
           <motion.div variants={itemVariants} className="flex gap-4 md:justify-start pt-4">
             <motion.button
-            onClick={() => navigate("/apply")}
+            onClick={() => navigate("/apply/start")}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="md:px-10 px-5 py-3 md:py-4 bg-[#1e3a5f] text-white rounded-full font-bold text-sm md:text-lg shadow-xl shadow-blue-900/20 transition-all uppercase tracking-widest"
@@ -110,7 +110,7 @@ const Hero = () => {
         {/* Right Side: Animated Image Composition */}
         <motion.div
           animate={floatAnimation}
-          className="relative w-full aspect-square md:aspect-auto h-full min-h-[200px] md:min-h-[600px]"
+          className="relative w-full aspect-square md:aspect-auto z-50 h-full min-h-[200px] md:min-h-[600px]"
         >
           <img src="hero.png" alt="" className="" />
         </motion.div>

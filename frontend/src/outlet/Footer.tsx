@@ -19,7 +19,7 @@ const FOOTER_LINKS = {
   ],
   "Support": [
     { name: "Contact", href: "#" },
-    { name: "GGCL LMS", href: "#" },
+    { name: "GGECL LMS", href: "#" },
     { name: "Live Chat", href: "#" },
     { name: "Career", href: "#" },
   ],

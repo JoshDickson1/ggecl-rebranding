@@ -82,7 +82,7 @@ export function Navbar() {
             <div className="hidden md:flex items-center gap-14">
               <Search size={20} className="text-slate-500" />
               <button 
-                onClick={() => navigate("/apply")}
+                onClick={() => navigate("/apply/start")}
                 className="h-13 px-10 text-white rounded-xl transition-color cursor-pointer bg-[#1e3a5f] hover:bg-[#2a5288]">
                 Apply Now
               </button>

@@ -1,3 +1,4 @@
+import AboutSect from "@/components_/AboutSect"
 import BlogPreview from "@/components_/BlogPreview"
 import CTA from "@/components_/CTA"
 import FAQ from "@/components_/FAQ"
@@ -14,6 +15,9 @@ const Home = () => {
       </div>
       <div className="">
         <SubHero />
+      </div>
+      <div className="">
+        <AboutSect />
       </div>
       <div className="">
         <ServicesSlider />
