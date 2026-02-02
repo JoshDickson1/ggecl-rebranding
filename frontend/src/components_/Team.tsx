@@ -4,7 +4,7 @@ const teamMembers = [
   {
     name: "Daniel Vincent",
     role: "Founder / CEO",
-    image: "/team/daniel.jpg", // Replace with your actual paths
+    image: "/daniel.jpeg", // Replace with your actual paths
   },
   {
     name: "Angel Uju",
@@ -12,9 +12,9 @@ const teamMembers = [
     image: "/team/angel.jpg",
   },
   {
-    name: "Fransisca Onwufuju",
+    name: "Xinia Jimenez",
     role: "Education Support Lead",
-    image: "/team/fransisca.jpg",
+    image: "/xiniaJimenez.jpeg",
   },
   {
     name: "Noel Kelechi",

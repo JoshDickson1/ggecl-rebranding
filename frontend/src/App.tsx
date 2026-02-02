@@ -12,6 +12,11 @@ import Blogs from "@/pages/Blogs"
 import SingleBlogPage from "@/components_/SingleBlogPage"
 import Services from "@/pages/Services"
 
+// Admin Imports (Adjust paths as necessary)
+import AdminLayout from "@/admin/outlet/Layout" 
+import AdminHome from "@/admin/pages/Home"
+import AdminLogin from "@/admin/pages/Login"
+
 import "./App.css"
 import Apply from "./pages/Apply"
 import Apply1 from "./components_/Apply1"
@@ -23,11 +28,9 @@ export function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    // Standardized app-wide loading state
     const timer = setTimeout(() => {
       setLoading(false)
     }, 400)
-
     return () => clearTimeout(timer)
   }, [])
 
@@ -43,25 +46,29 @@ export function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contact />} />
-            
-            {/* Blog Routes */}
             <Route path="/blogs" element={<Blogs />} />
             <Route path="/blogs/:id" element={<SingleBlogPage />} />
-
-          {/* 404 Route outside of main Layout */}
-          <Route path="*" element={<NotFound />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
+
+          {/* Application Portal Routes */}
           <Route path="/apply" element={<Apply />}>
-            <Route index element={<Navigate to="start" />} /> {/* Redirect /apply to /apply/start */}
+            <Route index element={<Navigate to="start" />} />
             <Route path="start" element={<Apply1 />} />
             <Route path="qualifications" element={<Apply2 />} />
             <Route path="documentation" element={<Apply3 />} />
             <Route path="acknowledgement" element={<Apply4 />} />
           </Route>
-        </Routes>
 
-        {/* Application Portal Routes */}
-        
+          {/* Admin Routes */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route index element={<AdminHome />} />
+            <Route path="login" element={<AdminLogin />} />
+            {/* For 'logout', usually this is a function or a redirecting component */}
+            <Route path="logout" element={<Navigate to="/admin/login" />} />
+          </Route>
+          
+        </Routes>
       </BrowserRouter>
     </ThemeProvider>
   )
