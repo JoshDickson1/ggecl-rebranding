@@ -2,18 +2,16 @@ import { useState } from "react"
 import { 
   Search, 
   Filter, 
-  Download, 
-  MoreVertical, 
+  Download,  
   CheckCircle, 
-  XCircle, 
-  Clock, 
+  XCircle,  
   Mail,
   ExternalLink 
 } from "lucide-react"
 
 const Applications = () => {
   // Mock Data - In production, this would be your 'apply' form submissions
-  const [applicants, setApplicants] = useState([
+  const [applicants] = useState([
     { id: "APP-921", name: "John Doe", email: "john@example.com", role: "Content Writer", date: "2024-03-20", status: "New" },
     { id: "APP-922", name: "Jane Smith", email: "jane@design.io", role: "UI Designer", date: "2024-03-19", status: "Under Review" },
     { id: "APP-923", name: "Mike Ross", email: "mike.r@legal.com", role: "Legal Consultant", date: "2024-03-18", status: "Accepted" },
