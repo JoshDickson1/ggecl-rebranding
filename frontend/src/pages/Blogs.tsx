@@ -4,7 +4,7 @@ import { BlogContent } from "@/components_/BlogContent"
 
 const Blogs = () => {
   return (
-    <div className="bg-slate-50 dark:bg-black transition-colors duration-300">
+    <div className="bg-background transition-colors duration-300">
       <PageHero
         title="Blogs"
         breadcrumbs={[

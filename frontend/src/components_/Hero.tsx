@@ -110,7 +110,7 @@ const Hero = () => {
         {/* Right Side: Animated Image Composition */}
         <motion.div
           animate={floatAnimation}
-          className="relative w-full aspect-square md:aspect-auto z-50 h-full min-h-[200px] md:min-h-[600px]"
+          className="relative w-full aspect-square md:aspect-auto z-1 h-full min-h-[200px] md:min-h-[600px]"
         >
           <img src="hero.png" alt="" className="" />
         </motion.div>

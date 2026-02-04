@@ -9,7 +9,7 @@ const teamMembers = [
   {
     name: "Angel Uju",
     role: "Non-Executive Director",
-    image: "/team/angel.jpg",
+    image: "/angel.jpeg",
   },
   {
     name: "Xinia Jimenez",

@@ -57,7 +57,7 @@ const FOOTER_LINKS = {
     { name: "FAQs", to: "/faqs" },
     { name: "Terms & Services", to: "/terms" },
     { name: "Work hours", to: "/work-hours" },
-    { name: "Blog", to: "/blog" },
+    { name: "Blogs", to: "/blogs" },
   ]
 };
 

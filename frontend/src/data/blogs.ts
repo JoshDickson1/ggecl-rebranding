@@ -25,13 +25,13 @@ export const blogs = [
     id: 2,
     title: "Campus Life: What University Really Teaches You",
     image:
-      "https://images.unsplash.com/photo-1541339907198-e087563ef3f5?w=1200",
+      "/camp.jpg",
     date: "Feb 02, 2026",
     author: "Editor",
     category: "University",
     tags: ["University", "Success", "Lifestyle"],
     images: [
-      "https://images.unsplash.com/photo-1541339907198-e087563ef3f5?w=1200",
+      "/camp.jpg",
       "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=1200",
     ],
     content: {

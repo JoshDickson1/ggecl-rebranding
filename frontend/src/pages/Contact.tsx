@@ -13,6 +13,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { PageHero } from "@/components_/PageHero";
+import { Link } from "react-router-dom";
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("xojdgarp");
@@ -97,8 +98,9 @@ export default function ContactPage() {
                 <Phone className="mt-1" size={24} />
                 <div>
                   <p className="font-bold">Hotline:</p>
-                  <p className="text-sm text-slate-300">+44 7943 477 853</p>
-                  <p className="text-sm text-slate-300">+234 703 339 8991</p>
+                  <a href="tel:+447943477853" className="text-sm text-slate-300">+44 7943 477 853</a>
+                  <br />
+                  <a href="tel:+2347033398991" className="text-sm text-slate-300">+234 703 339 8991</a>
                 </div>
               </div>
 
@@ -107,7 +109,7 @@ export default function ContactPage() {
                 <MessageSquare className="mt-1" size={24} />
                 <div>
                   <p className="font-bold">SMS/WhatsApp:</p>
-                  <p className="text-sm text-slate-300">+44 3301 137 424</p>
+                  <a href="sms:+443301137424" className="text-sm text-slate-300">+44 3301 137 424</a>
                 </div>
               </div>
 
@@ -116,7 +118,7 @@ export default function ContactPage() {
                 <Mail className="mt-1" size={24} />
                 <div>
                   <p className="font-bold">Email:</p>
-                  <p className="text-sm text-slate-300">info@ggecl.com</p>
+                  <a href="mailto:info@ggecl.com" className="text-sm text-slate-300">info@ggecl.com</a>
                 </div>
               </div>
             </div>
@@ -125,10 +127,18 @@ export default function ContactPage() {
           <div className="mt-12">
             <p className="mb-4 font-medium border-t border-white/20 pt-6">Connect with us</p>
             <div className="flex gap-4">
-              <Facebook className="cursor-pointer hover:text-blue-400 transition-colors" />
-              <Instagram className="cursor-pointer hover:text-pink-400 transition-colors" />
-              <Twitter className="cursor-pointer hover:text-sky-400 transition-colors" />
-              <Linkedin className="cursor-pointer hover:text-blue-300 transition-colors" />
+              <Link to="https://www.facebook.com/share/17sov827uW/?mibextid=wwXIfr" target="_blank" rel="noreferrer">
+                <Facebook className="cursor-pointer hover:text-blue-600 transition-colors" />
+              </Link>
+              <Link to="https://www.instagram.com/goldengosheneducation?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" target="_blank" rel="noreferrer">
+                <Instagram className="cursor-pointer hover:text-pink-500 transition-colors" />
+              </Link>
+              <Link to="https://x.com/goldengoshenedu" target="_blank" rel="noreferrer">
+                <Twitter className="cursor-pointer hover:text-blue-400 transition-colors" />
+              </Link>
+              <Link to="https://uk.linkedin.com/company/goldengosheneducationalconsultancy" target="_blank" rel="noreferrer">
+                <Linkedin className="cursor-pointer hover:text-blue-700 transition-colors" />
+              </Link>
             </div>
           </div>
         </motion.div>

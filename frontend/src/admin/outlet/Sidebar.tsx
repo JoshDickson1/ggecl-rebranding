@@ -1,11 +1,15 @@
+import { useState } from "react"
 import { NavLink, useNavigate } from "react-router-dom"
 import { 
   LayoutDashboard, 
   FileText, 
   Settings, 
   LogOut, 
-  ChevronRight,
-  ShieldCheck 
+  ShieldCheck,
+  ClipboardList,
+  PlusCircle,
+  Eye,
+  ChevronDown
 } from "lucide-react"
 
 interface SidebarProps {
@@ -14,12 +18,7 @@ interface SidebarProps {
 
 const Sidebar = ({ isOpen }: SidebarProps) => {
   const navigate = useNavigate();
-
-  const navItems = [
-    { name: "Dashboard", path: "/admin", icon: <LayoutDashboard size={18} /> },
-    { name: "Manage Blogs", path: "/admin/blogs", icon: <FileText size={18} /> },
-    { name: "Settings", path: "/admin/settings", icon: <Settings size={18} /> },
-  ]
+  const [isBlogsOpen, setIsBlogsOpen] = useState(false);
 
   return (
     <aside 
@@ -41,29 +40,91 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
       </div>
       
       {/* Navigation Links */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto custom-scrollbar">
         <p className="px-3 text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2 whitespace-nowrap">
           Main Menu
         </p>
-        {navItems.map((item) => (
-          <NavLink
-            key={item.path}
-            to={item.path}
-            end={item.path === "/admin"}
-            className={({ isActive }) => `
-              flex items-center justify-between px-3 py-2.5 rounded-md transition-all group whitespace-nowrap
-              ${isActive 
-                ? "bg-primary text-primary-foreground shadow-sm" 
-                : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"}
+
+        {/* Dashboard */}
+        <NavLink
+          to="/admin"
+          end
+          className={({ isActive }) => `
+            flex items-center gap-3 px-3 py-2.5 rounded-md transition-all whitespace-nowrap
+            ${isActive ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:bg-accent"}
+          `}
+        >
+          <LayoutDashboard size={18} />
+          <span className="text-sm font-medium">Dashboard</span>
+        </NavLink>
+
+        {/* Applications */}
+        <NavLink
+          to="/admin/applications"
+          className={({ isActive }) => `
+            flex items-center gap-3 px-3 py-2.5 rounded-md transition-all whitespace-nowrap
+            ${isActive ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:bg-accent"}
+          `}
+        >
+          <ClipboardList size={18} />
+          <span className="text-sm font-medium">Applications</span>
+        </NavLink>
+
+        {/* Blogs Accordion */}
+        <div className="space-y-1">
+          <button
+            onClick={() => setIsBlogsOpen(!isBlogsOpen)}
+            className={`
+              w-full flex items-center justify-between px-3 py-2.5 rounded-md transition-all text-muted-foreground hover:bg-accent group whitespace-nowrap
+              ${isBlogsOpen ? "text-foreground" : ""}
             `}
           >
             <div className="flex items-center gap-3">
-              {item.icon}
-              <span className="text-sm font-medium">{item.name}</span>
+              <FileText size={18} />
+              <span className="text-sm font-medium">Blogs</span>
             </div>
-            <ChevronRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-          </NavLink>
-        ))}
+            <ChevronDown 
+              size={14} 
+              className={`transition-transform duration-200 ${isBlogsOpen ? "rotate-180" : ""}`} 
+            />
+          </button>
+
+          {/* Submenu Items */}
+          <div className={`pl-9 space-y-1 overflow-hidden transition-all duration-300 ${isBlogsOpen ? "max-h-40 opacity-100 mt-1" : "max-h-0 opacity-0"}`}>
+            <NavLink
+              to="/admin/blogs/add"
+              className={({ isActive }) => `
+                flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all
+                ${isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"}
+              `}
+            >
+              <PlusCircle size={16} />
+              <span>Add Blog</span>
+            </NavLink>
+            <NavLink
+              to="/admin/blogs/view"
+              className={({ isActive }) => `
+                flex items-center gap-3 px-3 py-2 rounded-md text-sm transition-all
+                ${isActive ? "text-primary font-semibold" : "text-muted-foreground hover:text-foreground"}
+              `}
+            >
+              <Eye size={16} />
+              <span>View Added</span>
+            </NavLink>
+          </div>
+        </div>
+
+        {/* Settings */}
+        <NavLink
+          to="/admin/settings"
+          className={({ isActive }) => `
+            flex items-center gap-3 px-3 py-2.5 rounded-md transition-all whitespace-nowrap
+            ${isActive ? "bg-primary text-primary-foreground shadow-sm" : "text-muted-foreground hover:bg-accent"}
+          `}
+        >
+          <Settings size={18} />
+          <span className="text-sm font-medium">Settings</span>
+        </NavLink>
       </nav>
 
       {/* Footer / Logout */}

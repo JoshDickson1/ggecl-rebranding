@@ -4,12 +4,15 @@ import { Link } from "react-router-dom"
 import { ChevronRight, ChevronRightCircleIcon } from "lucide-react"
 
 const BLOGS = [
-  { id: 1, title: "Future of Education", image: "/graduate.svg", category: "Education", tags: ["Tech", "Future"] },
-  { id: 2, title: "Campus Life 2026", image: "https://images.unsplash.com/photo-1541339907198-e087563ef3f5?w=800", category: "Lifestyle", tags: ["University", "Success"] },
+    { id: 1, title: "Future of Education", image: "/graduate.svg", category: "Education", tags: ["Tech", "Future"] },
+  { id: 2, title: "Campus Life 2026", image: "/camp.jpg", category: "Lifestyle", tags: ["University", "Success"] },
   { id: 3, title: "Study Techniques", image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800", category: "Innovation", tags: ["Study", "Learning"] },
   { id: 4, title: "Modern Classrooms", image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=800", category: "Education", tags: ["Design", "Tech"] },
   { id: 5, title: "Digital Literacy", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800", category: "Education", tags: ["Tech", "Learning"] },
   { id: 6, title: "University Growth", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800", category: "University", tags: ["Future", "Success"] },
+  { id: 7, title: "Digital Literacy", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800", category: "Education", tags: ["Tech", "Learning"] },
+  { id: 8, title: "University Growth", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=800", category: "University", tags: ["Future", "Success"] },
+
 ]
 
 const BlogPreview = () => {
