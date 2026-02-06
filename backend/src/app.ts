@@ -1,15 +1,28 @@
-import express from "express"
 import cors from "cors"
-import healthRoute from "./routes/health.routes"
-import adminRoutes from "./routes/admin.route"
-import blogRoutes from "./routes/blog.route"
+import express from "express"
+import { errorHandler, notFoundHandler } from "./middleware/errorHandler"
+import routes from "./routes"
 
 const app = express()
-app.use("/api", healthRoute)
+
 app.use(cors())
 app.use(express.json())
-app.use("/api/admin", adminRoutes)
-app.use("/api/blog", blogRoutes)
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api", routes)
+
+
+app.get("/health", (req, res) => {
+    res.status(200).json({
+      status: "ok",
+      uptime: process.uptime(),
+      timestamp: Date.now(),
+    });
+  });
+
+app.use(notFoundHandler);
+
+app.use(errorHandler);
 
 
 export default app
