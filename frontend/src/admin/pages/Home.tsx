@@ -1,3 +1,4 @@
+import { useAuth } from "@/AuthProvider"
 import { 
   Users, 
   FileText, 
@@ -11,6 +12,10 @@ import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 
 const Home = () => {
+  const { user, session } = useAuth();
+  
+  console.log(user, ' and ', session)
+
   const [blogs, setBlogs] = useState([
     { id: 1, title: "10 Tips for Modern React", status: "Published", date: "2024-03-10" },
     { id: 2, title: "Mastering Tailwind CSS", status: "Published", date: "2024-03-12" },

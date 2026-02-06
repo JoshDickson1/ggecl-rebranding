@@ -5,6 +5,6 @@ import blogRoutes from "./blog.routes";
 const router = Router();
 
 router.use("/applications", applicationRoutes); 
-router.use("/blogs", blogRoutes); 
+router.use("/blog", blogRoutes); 
 
 export default router;

@@ -27,11 +27,18 @@ import AddBlog from "@/admin/pages/AddBlog"
 import  Settings from "@/admin/pages/Settings"
 import ViewBlog from "./admin/pages/ViewBlog"
 import Applications from "./admin/pages/Applications"
+import { AuthProvider, useAuth } from "./AuthProvider"
 
 // Simple Guard: Redirects to login if not authenticated
+
 const ProtectedRoute = () => {
-  const isAuth = localStorage.getItem("admin_auth") === "true";
-  return isAuth ? <Outlet /> : <Navigate to="/admin/login" replace />;
+  const { session, loading } = useAuth();
+
+  // Show nothing or a small spinner while checking if the user is logged in
+  if (loading) return null; 
+
+  // If no session exists, boot them to the login page
+  return session ? <Outlet /> : <Navigate to="/admin/login" replace />;
 };
 
 export function App() {
@@ -46,6 +53,7 @@ export function App() {
 
   return (
     <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      
       <BrowserRouter>
         <Routes>
           {/* 1. PUBLIC ROUTES */}
@@ -72,7 +80,7 @@ export function App() {
           <Route path="/admin/logout" element={<AdminLogout />} />
 
           {/* 4. PROTECTED ADMIN DASHBOARD */}
-          <Route element={<ProtectedRoute />}>
+          <Route element={<AuthProvider><ProtectedRoute /></AuthProvider>}>
             <Route path="/admin" element={<AdminLayout />}>
               <Route index element={<AdminHome />} />
               <Route path="blogs/add" element={<AddBlog />} />

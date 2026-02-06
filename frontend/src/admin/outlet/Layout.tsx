@@ -6,6 +6,7 @@ import Navbar from "./Navbar"
 const Layout = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(true)
 
+
   return (
     <div className="flex h-screen w-full overflow-hidden bg-background">
       {/* Sidebar - Pass state down */}
