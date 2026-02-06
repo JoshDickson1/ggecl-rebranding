@@ -128,7 +128,7 @@ export const updateApplicationStatus = async (
   try {
     const { id } = req.params;
     const { status } = req.body;
-    const reviewedBy = req.user?.id; // Assuming auth middleware sets req.user
+    const reviewedBy = req.user?.id; 
 
     if (!status) {
       throw new ValidationError("Status is required");
@@ -152,7 +152,7 @@ export const updateApplicationStatus = async (
     }
 
     const application = await ApplicationModel.updateApplicationStatus(
-      id,
+      id as string,
       status,
       reviewedBy
     );

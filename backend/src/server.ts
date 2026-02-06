@@ -7,9 +7,6 @@ const PORT = process.env.PORT || 4000
 
 async function start() {
 
-
-  
-
   app.listen(PORT, () => {
     console.log(`Backend running on http://localhost:${PORT}`)
   })
