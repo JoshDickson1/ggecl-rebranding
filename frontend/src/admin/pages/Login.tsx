@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { ShieldCheck, Lock, Mail, Eye, EyeOff, Loader2 } from "lucide-react"
 import { supabase } from "@/lib/supabase"
@@ -8,16 +8,32 @@ const Login = () => {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const [loading, setLoading] = useState(false)
+  const [checkingSession, setCheckingSession] = useState(true)
   const [error, setError] = useState<string | null>(null)
   
   const navigate = useNavigate()
+
+  // Check if user is already logged in
+  useEffect(() => {
+    const checkSession = async () => {
+      const { data: { session } } = await supabase.auth.getSession()
+      
+      if (session) {
+        // User is already logged in, redirect to admin
+        navigate("/admin", { replace: true })
+      } else {
+        setCheckingSession(false)
+      }
+    }
+
+    checkSession()
+  }, [navigate])
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault()
     setLoading(true)
     setError(null)
 
-    // Supabase Auth Logic
     const { error: authError } = await supabase.auth.signInWithPassword({
       email,
       password,
@@ -27,9 +43,17 @@ const Login = () => {
       setError(authError.message)
       setLoading(false)
     } else {
-      // Supabase handles session storage automatically in localStorage
       navigate("/admin")
     }
+  }
+
+  // Show loading spinner while checking session
+  if (checkingSession) {
+    return (
+      <div className="min-h-screen w-full flex items-center justify-center bg-muted/30">
+        <Loader2 className="animate-spin text-primary" size={40} />
+      </div>
+    )
   }
 
   return (
@@ -46,7 +70,6 @@ const Login = () => {
             </p>
           </div>
 
-          {/* Error Message Display */}
           {error && (
             <div className="mb-4 p-3 text-sm bg-destructive/10 border border-destructive/20 text-destructive rounded-md">
               {error}
