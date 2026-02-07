@@ -45,7 +45,7 @@ const FOOTER_LINKS = {
     { name: "Home", to: "/" },
     { name: "About us", to: "/about" },
     { name: "Services", to: "/services" },
-    { name: "Courses", to: "/courses" },
+    { name: "Apply", to: "/apply/start" },
   ],
   "Support": [
     { name: "Contact", to: "/contact" },
@@ -166,13 +166,13 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="pt-8 border-t border-slate-200 dark:border-slate-800 flex flex-col md:flex-row justify-between items-center gap-6">
           <p className="text-xs font-bold text-slate-400 uppercase tracking-widest">
-            © 2026 G.G.E.C.L All Rights Reserved by <span className="text-[#1e3a5f] dark:text-blue-400">BiTech</span>
+            © 2026 G.G.E.C.L All Rights Reserved by <a href="tel:+2349130993464" className="text-[#1e3a5f] dark:text-blue-400">BiTech</a>
           </p>
 
           <div className="flex items-center gap-8">
             <div className="flex gap-4 text-[10px] font-black uppercase tracking-tighter text-slate-400">
-              <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</a>
-              <a href="#" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms & Conditions</a>
+              <Link to="/privacy-policy" className="hover:text-slate-900 dark:hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-slate-900 dark:hover:text-white transition-colors">Terms & Conditions</Link>
             </div>
             <div className="p-1 bg-slate-100 dark:bg-slate-900 rounded-full border border-slate-200 dark:border-slate-800 shadow-inner scale-90">
               <ModeToggle />
