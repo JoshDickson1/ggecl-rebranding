@@ -11,6 +11,7 @@ import {
   Eye,
   ChevronDown
 } from "lucide-react"
+import { useAuth } from "@/AuthProvider" // Ensure this path is correct
 
 interface SidebarProps {
   isOpen: boolean
@@ -18,7 +19,28 @@ interface SidebarProps {
 
 const Sidebar = ({ isOpen }: SidebarProps) => {
   const navigate = useNavigate();
+  const { logout } = useAuth(); // Assuming your AuthProvider has a logout function
   const [isBlogsOpen, setIsBlogsOpen] = useState(false);
+
+  const handleLogout = async () => {
+    try {
+      // 1. Clear session via Auth Provider if available
+      if (logout) {
+        await logout();
+      }
+      
+      // 2. Clear local storage tokens manually as a fallback
+      localStorage.removeItem("admin_token");
+      localStorage.removeItem("sb-token"); // If using Supabase
+      
+      // 3. Redirect to login
+      navigate("/login", { replace: true });
+    } catch (error) {
+      console.error("Logout failed:", error);
+      // Fallback redirect
+      navigate("/login");
+    }
+  };
 
   return (
     <aside 
@@ -45,7 +67,6 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
           Main Menu
         </p>
 
-        {/* Dashboard */}
         <NavLink
           to="/admin"
           end
@@ -58,7 +79,6 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
           <span className="text-sm font-medium">Dashboard</span>
         </NavLink>
 
-        {/* Applications */}
         <NavLink
           to="/admin/applications"
           className={({ isActive }) => `
@@ -70,7 +90,6 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
           <span className="text-sm font-medium">Applications</span>
         </NavLink>
 
-        {/* Blogs Accordion */}
         <div className="space-y-1">
           <button
             onClick={() => setIsBlogsOpen(!isBlogsOpen)}
@@ -89,7 +108,6 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
             />
           </button>
 
-          {/* Submenu Items */}
           <div className={`pl-9 space-y-1 overflow-hidden transition-all duration-300 ${isBlogsOpen ? "max-h-40 opacity-100 mt-1" : "max-h-0 opacity-0"}`}>
             <NavLink
               to="/admin/blogs/add"
@@ -114,7 +132,6 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
           </div>
         </div>
 
-        {/* Settings */}
         <NavLink
           to="/admin/settings"
           className={({ isActive }) => `
@@ -130,7 +147,7 @@ const Sidebar = ({ isOpen }: SidebarProps) => {
       {/* Footer / Logout */}
       <div className="p-4 border-t bg-muted/30">
         <button 
-          onClick={() => navigate("/admin/logout")}
+          onClick={handleLogout}
           className="flex items-center gap-3 w-full px-3 py-2 text-sm font-medium text-red-500 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-md transition-colors whitespace-nowrap"
         >
           <LogOut size={18} />

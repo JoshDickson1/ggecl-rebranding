@@ -14,8 +14,7 @@ import {
 import axios from "axios"
 import { useAuth } from "@/AuthProvider"
 
-// Base URL from Application API Documentation
-const API_BASE_URL = "http://localhost:4000/api/applications"
+const API_BASE_URL = "https://ggecl-rebranding.onrender.com/api/applications"
 
 const Applications = () => {
   const { session } = useAuth();
@@ -24,7 +23,6 @@ const Applications = () => {
   const [error, setError] = useState<string | null>(null)
   const [totalCount, setTotalCount] = useState(0)
 
-  // Fetch applications from API
   const fetchApplications = async () => {
     try {
       setLoading(true)

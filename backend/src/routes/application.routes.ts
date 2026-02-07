@@ -17,28 +17,14 @@ router.post(
   ApplicationController.createApplication
 );
 
-
-router.get(
-  "/:id", 
-  authenticateUser, 
-  ApplicationController.getApplicationById
-);
-
-router.post(
-  "/upload-temp", 
-  upload.single("file"), 
-  ApplicationController.uploadTempDocument
-);
-
-
-
-// Admin routes - require admin role
 router.get(
   "/admin",
   authenticateUser,
   requireRole(["admin", "super_admin"]),
   ApplicationController.getAllApplications
 );
+
+
 
 router.patch(
   "/admin/:id/status",
@@ -60,5 +46,18 @@ router.get(
   requireRole(["admin", "super_admin"]),
   ApplicationController.getApplicationStats
 );
+
+router.get(
+  "/:id", 
+  authenticateUser, 
+  ApplicationController.getApplicationById
+);
+
+router.post(
+  "/upload-temp", 
+  upload.single("file"), 
+  ApplicationController.uploadTempDocument
+);
+
 
 export default router;
