@@ -32,6 +32,7 @@ import WorkHours from "./pages/WorkHours"
 import FAQ from "./components_/FAQ"
 import Terms from "./pages/Terms"
 import Privacy from "./pages/Privacy"
+import ViewApplication from "./admin/pages/ViewApplication"
 
 // Simple Guard: Redirects to login if not authenticated
 
@@ -96,6 +97,8 @@ export function App() {
               <Route path="blogs/add" element={<AddBlog />} />
               <Route path="blogs/view" element={<ViewBlog />} />
               <Route path="applications" element={<Applications />} />
+              {/* Corrected: Remove the leading slash to make it /admin/applications/:id */}
+              <Route path="applications/:id" element={<ViewApplication />} /> 
               <Route path="settings" element={<Settings />} />
             </Route>
           </Route>

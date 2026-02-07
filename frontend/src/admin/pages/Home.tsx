@@ -6,13 +6,13 @@ import {
   Plus,
   Trash2,
   UserCheck,
-  Clock,
   AlertCircle,
   Loader2  
 } from "lucide-react"
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
 import axios from "axios"
+import { LatestApplications } from "../components/LatestApplications"
 
 // Base URL from your API documentation [cite: 8]
 const API_BASE_URL = "https://ggecl-rebranding.onrender.com/api/blog"
@@ -196,32 +196,7 @@ const Home = () => {
 
         {/* Applications Panel (Right - 1/3 width) */}
         <div className="bg-card border rounded-xl shadow-sm flex flex-col">
-          <div className="p-4 border-b bg-muted/20">
-            <h3 className="font-semibold text-sm flex items-center gap-2">
-              <Clock size={16} className="text-primary" />
-              Latest Applications
-            </h3>
-          </div>
-          <div className="p-4 space-y-4 flex-1">
-            {applications.map((app) => (
-              <div key={app.id} className="flex items-start justify-between group cursor-pointer border-b border-dashed border-border pb-3 last:border-0 last:pb-0">
-                <div className="space-y-1">
-                  <p className="text-sm font-semibold leading-none group-hover:text-primary transition-colors">{app.name}</p>
-                  <p className="text-xs text-muted-foreground">{app.role}</p>
-                  <p className="text-[10px] text-muted-foreground font-mono">{app.id}</p>
-                </div>
-                <div className="text-right">
-                  <span className="text-[10px] font-medium text-muted-foreground block mb-1">{app.time}</span>
-                  <span className="text-[9px] font-bold text-primary uppercase">{app.status}</span>
-                </div>
-              </div>
-            ))}
-          </div>
-          <button 
-            onClick={() => navigate("/admin/applications")}
-            className="m-4 mt-0 py-2 text-xs font-semibold border rounded-lg hover:bg-muted transition-colors">
-            Review Portal
-          </button>
+          <LatestApplications />
         </div>
       </div>
     </div>
