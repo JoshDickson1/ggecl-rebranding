@@ -1,6 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import BlogModel, { BlogPost, BlogFilters } from "../models/blog.model";
 import { ValidationError, NotFoundError } from "../lib/AppError";
+import StorageModel, { UploadedFile } from "../models/storage.mode.";
 
 
 const generateSlug = (title: string): string => {
@@ -55,6 +56,41 @@ export const createPost = async (
   }
 };
 
+export const uploadPostImage = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const file = req.file;
+
+    if (!file) {
+      throw new ValidationError("No image file provided");
+    }
+
+    // Map Multer file to your UploadedFile interface
+    const uploadedFile: UploadedFile = {
+      originalName: file.originalname,
+      size: file.size,
+      mimetype: file.mimetype,
+      buffer: file.buffer,
+    };
+
+    // We use 'blog' as the folder and 'featured' (or a generic ID) as the subfolder
+    const imageUrl = await StorageModel.uploadFile(
+      uploadedFile,
+      "blog",
+      "images" 
+    );
+
+    res.status(200).json({
+      message: "Image uploaded successfully",
+      url: imageUrl,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
 
 export const getAllPosts = async (
   req: Request,

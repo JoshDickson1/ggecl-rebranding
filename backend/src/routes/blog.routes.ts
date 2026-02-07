@@ -1,9 +1,14 @@
 import express from "express";
 import * as BlogController from "../controllers/blog.controller";
 import { authenticateUser, requireRole } from "../middleware/auth.middleware";
+import multer from "multer";
 
 const router = express.Router();
 
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB
+});
 
 router.get(
   "/",
@@ -33,6 +38,14 @@ router.post(
   authenticateUser,
   requireRole(["admin", "super_admin"]),
   BlogController.createPost
+);
+
+router.post(
+  "/upload-image",
+  authenticateUser,
+  requireRole(["admin", "super_admin"]),
+  upload.single("image"), 
+  BlogController.uploadPostImage
 );
 
 
