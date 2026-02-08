@@ -1,6 +1,6 @@
+import { BlogContent } from "@/components_/BlogContent"
 import CTA from "@/components_/CTA"
 import { PageHero } from "@/components_/PageHero"
-import { BlogContent } from "@/components_/BlogContent"
 
 const Blogs = () => {
   return (
