@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dialog";
 import { PageHero } from "@/components_/PageHero";
 import { Link } from "react-router-dom";
+import LiveChat from "./LiveChat";
 
 export default function ContactPage() {
   const [state, handleSubmit] = useForm("xojdgarp");
@@ -173,6 +174,8 @@ export default function ContactPage() {
           </div>
         </DialogContent>
       </Dialog>
+
+      <LiveChat />
     </div>
     </div>
   );

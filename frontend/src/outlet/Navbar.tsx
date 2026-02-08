@@ -94,7 +94,7 @@ export function Navbar() {
         </div>
 
         {/* Main Nav */}
-        <nav className="bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl border-b border-slate-200/20">
+        <nav className="bg-white/70 dark:bg-slate-950/70 backdrop-blur-xl">
           <div className="flex items-center justify-between px-4 md:px-10 py-4">
             {/* Logo */}
             <Link to="/" className="flex items-center bg-zinc-100 p-0 border-2 border-[#1e3a5f]/50 rounded-full transition-transform hover:scale-105">
