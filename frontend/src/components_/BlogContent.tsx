@@ -12,7 +12,7 @@ import {
   Search,
   X
 } from "lucide-react"
-import { useEffect, useState, type JSXElementConstructor, type Key, type ReactElement, type ReactNode, type ReactPortal } from "react"
+import { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
 
 // Import the hooks from your blog service file
@@ -173,7 +173,7 @@ export function BlogContent() {
           {/* Blog Grid/List */}
           <div className={cn("grid gap-8", view === "grid" ? "grid-cols-1 md:grid-cols-2" : "grid-cols-1")}>
             <AnimatePresence mode="popLayout">
-              {blogs.map((blog: { id: Key | null | undefined; slug: any; featured_image_url: any; seo_keywords: any[]; title: string | number | bigint | boolean | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | ReactPortal | Promise<string | number | bigint | boolean | ReactPortal | ReactElement<unknown, string | JSXElementConstructor<any>> | Iterable<ReactNode> | null | undefined> | null | undefined; excerpt: any; published_at: string | number | Date }) => (
+              {blogs.map((blog) => (
                 <motion.div
                   layout
                   key={blog.id}
