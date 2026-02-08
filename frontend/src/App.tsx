@@ -33,6 +33,7 @@ import FAQ from "./components_/FAQ"
 import Terms from "./pages/Terms"
 import Privacy from "./pages/Privacy"
 import ViewApplication from "./admin/pages/ViewApplication"
+import Careers from "./pages/Careers"
 
 // Simple Guard: Redirects to login if not authenticated
 
@@ -73,6 +74,7 @@ export function App() {
             <Route path="/faqs" element={<FAQ />} />
             <Route path="/terms" element={<Terms />} />
             <Route path="/privacy-policy" element={<Privacy />} />
+            <Route path="/career" element={<Careers />} />
             {/* 5. 404 CATCH-ALL */}
           <Route path="*" element={<NotFound />} />
           </Route>
