@@ -18,7 +18,9 @@ import axios from "axios"
 const API_BASE_URL = "https://ggecl-rebranding.onrender.com/api/blog"
 
 const Home = () => {
-  const { session } = useAuth();
+  const { session} = useAuth();
+
+  console.log('session is good', session?.access_token)
   const navigate = useNavigate()
   
   const [loading, setLoading] = useState(true)

@@ -106,9 +106,10 @@ export const getAllPosts = async (
       search,
       limit = "20",
       offset = "0",
+      isAdmin
     } = req.query;
 
-    const isAdmin = req.user?.role === 'admin' || req.user?.role === 'super_admin';
+
 
     const filters: BlogFilters = {
       status: status as string,
@@ -122,7 +123,7 @@ export const getAllPosts = async (
       filters,
       parseInt(limit as string),
       parseInt(offset as string),
-      isAdmin
+      String(isAdmin) === 'true'
     );
 
     res.status(200).json({
