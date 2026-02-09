@@ -94,7 +94,7 @@ const SingleBlogPage = () => {
               </span>
               <span className="flex items-center gap-2">
                 <User size={16} className="text-[#1e3a5f]" /> 
-                { "GGEC"}
+                { "GGECL"}
               </span>
               <span className="flex items-center gap-2">
                 <Tag size={16} className="text-[#1e3a5f]" /> 
