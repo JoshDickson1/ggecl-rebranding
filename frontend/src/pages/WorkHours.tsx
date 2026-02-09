@@ -2,12 +2,12 @@ import { Clock, MapPin, Phone, Mail, Globe, CheckCircle2, AlertCircle } from "lu
 
 const WorkHours = () => {
   const days = [
-    { day: "Monday", hours: "08:00 AM - 05:00 PM", status: "Open" },
-    { day: "Tuesday", hours: "08:00 AM - 05:00 PM", status: "Open" },
-    { day: "Wednesday", hours: "08:00 AM - 05:00 PM", status: "Open" },
-    { day: "Thursday", hours: "08:00 AM - 05:00 PM", status: "Open" },
-    { day: "Friday", hours: "08:00 AM - 04:00 PM", status: "Open" },
-    { day: "Saturday", hours: "09:00 AM - 01:00 PM", status: "By Appointment" },
+    { day: "Monday", hours: "09:00 AM - 17:00 PM", status: "Open" },
+    { day: "Tuesday", hours: "09:00 AM - 17:00 PM", status: "Open" },
+    { day: "Wednesday", hours: "09:00 AM - 17:00 PM", status: "Open" },
+    { day: "Thursday", hours: "09:00 AM - 17:00 PM", status: "Open" },
+    { day: "Friday", hours: "09:00 AM - 17:00 PM", status: "Open" },
+    { day: "Saturday", hours: "12:00 AM - 16:00 PM", status: "By Appointment" },
     { day: "Sunday", hours: "Closed", status: "Closed" },
   ]
 
@@ -65,7 +65,7 @@ const WorkHours = () => {
           
           <div className="p-6 bg-slate-50 dark:bg-slate-800/50 text-center">
             <p className="text-sm text-slate-500 italic">
-              * Note: We are closed on all Public Holidays in Nigeria.
+              * Note: We are closed on all Public Holidays.
             </p>
           </div>
         </div>
@@ -83,7 +83,7 @@ const WorkHours = () => {
               <Mail className="text-blue-600 mb-4" size={28} />
               <h4 className="font-bold mb-1">Email Support</h4>
               <a href="mailto:info@ggecl.com" className="text-sm text-slate-500">info@ggecl.com</a> <br />
-              <a href="mailto:info@ggecl.com" className="text-sm text-slate-500">vincent.chido@ggecl.com</a>
+              <a href="mailto:daniel.vincent@ggecl.com" className="text-sm text-slate-500">daniel.vincent@ggecl.com</a>
             </div>
           </div>
 
@@ -94,9 +94,9 @@ const WorkHours = () => {
               <p className="text-blue-100 mb-6 leading-relaxed">
                 148 Rose Bowl, Portland Crescent, UK
               </p>
-              <button className="bg-white text-blue-600 px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-50 transition-colors inline-flex items-center gap-2">
+              <a href="https://maps.app.goo.gl/ETTCkbbUufVjsyrL9" className="bg-white text-blue-600 px-6 py-2.5 rounded-full font-bold text-sm hover:bg-blue-50 transition-colors inline-flex items-center gap-2">
                 Get Directions <Globe size={16} />
-              </button>
+              </a>
             </div>
             {/* Decorative circles */}
             <div className="absolute -bottom-12 -right-12 w-48 h-48 bg-blue-500 rounded-full opacity-50 group-hover:scale-110 transition-transform duration-500" />

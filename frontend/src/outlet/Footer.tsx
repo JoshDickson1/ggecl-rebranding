@@ -50,7 +50,6 @@ const FOOTER_LINKS = {
   "Support": [
     { name: "Contact", to: "/contact" },
     { name: "GGECL LMS", to: "https://lms.ggecl.com" },
-    { name: "Live Chat", to: "/live-chat" },
     { name: "Career", to: "/career" },
   ],
   "Community": [
