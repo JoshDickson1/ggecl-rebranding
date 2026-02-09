@@ -108,8 +108,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       className={`
         p-2 rounded-md transition-all
         ${isActive 
-          ? 'bg-[#1e3a5f] text-white shadow-sm' 
-          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+          ? 'bg-[#1e3a5f] text-white dark:bg-[#2a4a7f] dark:shadow-sm' 
+          : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800'
         }
         ${disabled ? 'opacity-30 cursor-not-allowed' : 'cursor-pointer'}
       `}
@@ -119,9 +119,9 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
   );
 
   return (
-    <div className="border-b border-slate-200 bg-slate-50/50 backdrop-blur-sm p-3 flex flex-wrap gap-1.5 sticky top-0 z-10">
+    <div className="border-b border-slate-200 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-800/50 backdrop-blur-sm p-3 flex flex-wrap gap-1.5 sticky top-0 z-10">
       {/* Text Formatting */}
-      <div className="flex gap-1 pr-3 border-r border-slate-200">
+      <div className="flex gap-1 pr-3 border-r border-slate-200 dark:border-slate-700">
         <MenuButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           isActive={editor.isActive('bold')}
@@ -160,7 +160,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       </div>
 
       {/* Headings */}
-      <div className="flex gap-1 pr-3 border-r border-slate-200">
+      <div className="flex gap-1 pr-3 border-r border-slate-200 dark:border-slate-700 dark:border-slate-700">
         <MenuButton
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
           isActive={editor.isActive('heading', { level: 1 })}
@@ -185,7 +185,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       </div>
 
       {/* Lists */}
-      <div className="flex gap-1 pr-3 border-r border-slate-200">
+      <div className="flex gap-1 pr-3 border-r border-slate-200 dark:border-slate-700">
         <MenuButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
           isActive={editor.isActive('bulletList')}
@@ -217,7 +217,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       </div>
 
       {/* Alignment */}
-      <div className="flex gap-1 pr-3 border-r border-slate-200">
+      <div className="flex gap-1 pr-3 border-r border-slate-200 dark:border-slate-700">
         <MenuButton
           onClick={() => editor.chain().focus().setTextAlign('left').run()}
           isActive={editor.isActive({ textAlign: 'left' })}
@@ -249,7 +249,7 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
       </div>
 
       {/* Link & Image */}
-      <div className="flex gap-1 pr-3 border-r border-slate-200">
+      <div className="flex gap-1 pr-3 border-r border-slate-200 dark:border-slate-700">
         <MenuButton
           onClick={() => setShowLinkInput(!showLinkInput)}
           isActive={editor.isActive('link')}
@@ -260,8 +260,8 @@ const MenuBar = ({ editor }: { editor: Editor | null }) => {
         <label className={`
           cursor-pointer p-2 rounded-md transition-all
           ${isUploadingImage 
-            ? 'bg-slate-200 cursor-wait' 
-            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
+            ? 'bg-slate-200 cursor-wait dark:bg-slate-700' 
+            : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800'
           }
         `}>
           <input
@@ -359,7 +359,7 @@ export const TiptapEditor = ({
       Link.configure({
         openOnClick: false,
         HTMLAttributes: {
-          class: 'text-[#1e3a5f] underline decoration-2 underline-offset-2 hover:text-[#2a4a7f] transition-colors cursor-pointer',
+          class: 'text-[#1e3a5f] underline decoration-2 underline-offset-2 hover:text-[#2a4a7f] dark:text-[#8ea2c0] dark:hover:text-[#a8b7d4] transition-colors cursor-pointer',
         },
       }),
       Image.configure({
@@ -401,7 +401,7 @@ export const TiptapEditor = ({
   }, [editor, content]);
 
   return (
-    <div className="border border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">
+    <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden bg-white dark:bg-slate-900 shadow-sm">
       {editable && <MenuBar editor={editor} />}
       <div className="tiptap-editor-content">
         <EditorContent editor={editor} />

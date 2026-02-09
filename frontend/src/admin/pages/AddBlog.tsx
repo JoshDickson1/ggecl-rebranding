@@ -221,7 +221,7 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
   return (
     <div className="min-h-screen ">
       {/* Top Navbar */}
-      <nav className=" z-30 backdrop-blur-md border-b pb-3 flex items-center justify-between">
+      <nav className=" z-30 backdrop-blur-md border-b dark: pb-3 flex items-center justify-between">
         <div className="flex items-center gap-4">
           <button 
             onClick={() => navigate('/admin/blogs/view')}
@@ -230,7 +230,7 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
             <ArrowLeft size={20} className="text-slate-600" />
           </button>
           <div>
-            <h1 className="text-sm font-bold text-slate-900">
+            <h1 className="text-sm font-bold text-slate-900 dark:text-white uppercase tracking-wide">
               {mode === 'edit' ? 'Edit Content' : 'Draft New Article'}
             </h1>
             <p className="text-[10px] text-slate-400 uppercase tracking-widest font-black">
@@ -243,7 +243,7 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
           <button
             onClick={handleSave}
             disabled={isSaving}
-            className="flex items-center gap-2 px-4 py-2 text-slate-600 hover:bg-slate-100 rounded-lg text-xs font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 py-2 text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg text-xs font-bold transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSaving ? (
               <Loader2 size={14} className="animate-spin" />
@@ -276,7 +276,7 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
         
         {/* Editor Main Canvas */}
         <div className="lg:col-span-8 xl:col-span-9 px-4 py-6 md:px-4 md:py-12">
-          <div className=" mx-auto space-y-8 bg-white ">
+          <div className=" mx-auto space-y-8 bg-white dark:bg-slate-900 rounded-xl border border-slate-100 dark:border-slate-800 shadow-lg p-6 md:p-10">
 
             {/* Title & Stats */}
             <div className="space-y-4">
@@ -285,14 +285,14 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="Enter a headline..."
                 rows={1}
-                className="w-full text-4xl md:text-5xl font-black text-slate-800 placeholder-slate-100 focus:outline-none border-none bg-transparent resize-none leading-tight"
+                className="w-full text-4xl md:text-5xl font-black text-slate-800 dark:text-slate-100 placeholder-slate-100 focus:outline-none border-none bg-transparent resize-none leading-tight"
               />
-              <div className="flex items-center gap-4 text-slate-400 py-2 border-y border-slate-50">
+              <div className="flex items-center gap-4 text-slate-400 py-2 border-y border-slate-50 dark:border-slate-700">
                 <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase">
                   <Clock size={14} className="text-primary" />
                   {readingTime} min read
                 </div>
-                <div className="h-3 w-[1px] bg-slate-200"></div>
+                <div className="h-3 w-[1px] bg-slate-200 dark:bg-slate-600"></div>
                 <div className="flex items-center gap-1.5 text-[11px] font-bold uppercase">
                   <Globe size={14} className="text-primary" />
                   Visibility: {status}
@@ -308,30 +308,30 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
         </div>
 
         {/* Sidebar Panel */}
-        <aside className="lg:col-span-4 xl:col-span-3 bg-slate-50/30 border-l border-slate-100 p-6 space-y-6">
+        <aside className="lg:col-span-4 xl:col-span-3 bg-slate-50/30 dark:bg-slate-900/30 border-l border-slate-100 dark:border-slate-700 p-6 space-y-6">
           
           {/* Metadata Accordion */}
-          <section className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <section className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden">
             <button
               onClick={() => setShowPostDetails(!showPostDetails)}
               className="w-full flex justify-between items-center p-4"
             >
               <div className="flex items-center gap-2">
                 <Search size={14} className="text-blue-500" />
-                <span className="font-black text-slate-700 uppercase text-[10px] tracking-widest">Post Settings</span>
+                <span className="font-black text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-widest">Post Settings</span>
               </div>
               {showPostDetails ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </button>
             
             {showPostDetails && (
-              <div className="p-4 pt-0 space-y-5 border-t border-slate-50">
+              <div className="p-4 pt-0 space-y-5 border-t border-slate-50 dark:border-slate-700">
                 <div className="mt-4">
                   <label className="block text-[10px] font-black text-slate-400 mb-1.5 uppercase">Slug URL</label>
                   <input
                     type="text"
                     value={slug}
                     onChange={handleSlugChange}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary/10 outline-none transition-all"
+                    className="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg text-sm font-medium focus:ring-2 focus:ring-primary/10 outline-none transition-all"
                   />
                   {slug && slugAvailability && (
                     <div className="flex items-center gap-1 mt-1.5">
@@ -349,14 +349,14 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
                     value={excerpt}
                     onChange={(e) => setExcerpt(e.target.value)}
                     rows={3}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs leading-relaxed outline-none resize-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-xs leading-relaxed outline-none resize-none"
                     placeholder="Short summary for preview cards..."
                   />
                 </div>
 
                 <div>
                   <label className="block text-[10px] font-black text-slate-400 mb-1.5 uppercase">Cover Image</label>
-                  <div className="relative group aspect-video rounded-lg border-2 border-dashed border-slate-200 bg-slate-50 flex items-center justify-center overflow-hidden transition-all hover:border-slate-300">
+                  <div className="relative group aspect-video rounded-lg border-2 border-dashed border-slate-200 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 flex items-center justify-center overflow-hidden transition-all hover:border-slate-300">
                     {featuredImageUrl ? (
                       <>
                         <img src={featuredImageUrl} alt="Preview" className="w-full h-full object-cover" />
@@ -390,27 +390,27 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
           </section>
 
           {/* SEO Accordion */}
-          <section className="bg-white border border-slate-200 rounded-xl shadow-sm overflow-hidden">
+          <section className="bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl shadow-sm overflow-hidden">
             <button
               onClick={() => setShowSEO(!showSEO)}
               className="w-full flex justify-between items-center p-4"
             >
               <div className="flex items-center gap-2">
                 <Globe size={14} className="text-emerald-500" />
-                <span className="font-black text-slate-700 uppercase text-[10px] tracking-widest">SEO & Social</span>
+                <span className="font-black text-slate-700 dark:text-slate-300 uppercase text-[10px] tracking-widest">SEO & Social</span>
               </div>
               {showSEO ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
             </button>
             
             {showSEO && (
-              <div className="p-4 pt-0 space-y-4 border-t border-slate-50">
+              <div className="p-4 pt-0 space-y-4 border-t border-slate-50 dark:border-slate-700">
                 <div className="mt-4">
                   <label className="block text-[10px] font-black text-slate-400 mb-1 uppercase">Meta Title</label>
                   <input
                     type="text"
                     value={seoTitle}
                     onChange={(e) => setSeoTitle(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-xs outline-none"
                   />
                 </div>
                 <div>
@@ -419,24 +419,24 @@ export const BlogEditor = ({ mode }: BlogEditorProps) => {
                     type="text"
                     value={seoKeywords}
                     onChange={(e) => setSeoKeywords(e.target.value)}
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-xs outline-none"
                     placeholder="tag1, tag2..."
                   />
                 </div>
-                <div className="pt-2 border-t border-slate-50">
+                <div className="pt-2 border-t border-slate-50 dark:border-slate-700">
                   <h4 className="text-[9px] font-black text-slate-300 uppercase mb-3 tracking-widest">Social (Open Graph)</h4>
                   <input
                     type="text"
                     value={ogTitle}
                     onChange={(e) => setOgTitle(e.target.value)}
                     placeholder="Social Title"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none mb-2"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-xs outline-none mb-2"
                   />
                   <textarea
                     value={ogDescription}
                     onChange={(e) => setOgDescription(e.target.value)}
                     placeholder="Social Description"
-                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 rounded-lg text-xs outline-none resize-none"
+                    className="w-full px-3 py-2 bg-slate-50 border border-slate-200 dark:border-slate-700 dark:bg-slate-800 rounded-lg text-xs outline-none resize-none"
                   />
                 </div>
               </div>
