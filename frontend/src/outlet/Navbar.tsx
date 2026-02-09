@@ -68,7 +68,7 @@ export function Navbar() {
                 </div>
                 {/* Duplicate Set for Seamless Loop */}
                 <div className="flex items-center gap-10">
-                  <span className="font-bold tracking-wider">GOLDEN GOSHEN EDUCATIONAL CONSULTING LTD (GGECL)</span>
+                  <span className="font-bold tracking-wider uppercase">Golden Goshen Educational Consultation limited (GGECL)</span>
                   <div className="flex items-center gap-2">
                     <Phone size={14} className="text-blue-300" />
                     <span>+44 (0) 330 113 7424</span>
