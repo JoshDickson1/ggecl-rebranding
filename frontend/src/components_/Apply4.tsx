@@ -1,9 +1,4 @@
-import { useState, useEffect } from "react";
-import { useOutletContext, useNavigate } from "react-router-dom";
-import { CheckCircle2, Home, Loader2 } from "lucide-react";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -11,25 +6,27 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { CheckCircle2, Home } from "lucide-react";
+import { useEffect, useState } from "react";
+import { useNavigate, useOutletContext } from "react-router-dom";
 
 type ApplyContextType = {
   formData: any;
   updateFields: (fields: any) => void;
 };
 
-const FORMSPREE_ENDPOINT = "https://formspree.io/f/xojdgarp";
-
 const Apply4 = () => {
   const { formData, updateFields } = useOutletContext<ApplyContextType>();
   const navigate = useNavigate();
 
-  const [submitting, setSubmitting] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [showSuccess, setShowSuccess] = useState(false);
+  // We only need local state for the success modal and redirect
+  const [showSuccess] = useState(false);
   const [countdown, setCountdown] = useState(10);
 
-  // Auto redirect after success
+  // Auto redirect after success (This triggers after the parent successfully submits)
   useEffect(() => {
     let timer: ReturnType<typeof setInterval>;
     if (showSuccess && countdown > 0) {
@@ -42,58 +39,10 @@ const Apply4 = () => {
     return () => clearInterval(timer);
   }, [showSuccess, countdown, navigate]);
 
-  const handleFinalSubmit = async () => {
-    setSubmitting(true);
-    setError(null);
-
-    try {
-      const data = new FormData();
-
-      // Text fields
-      data.append("Full Name", formData.fullName);
-      data.append("Email", formData.email);
-      data.append("Phone", formData.phone);
-      data.append("Origin Country", formData.country);
-      data.append("Highest Qualification", formData.highestQualification);
-      data.append("Target Program", formData.requiredProgram);
-      data.append("Destination", formData.countryOfInterest);
-      data.append("Choice 1", formData.courseFirstChoice);
-      data.append("Choice 2", formData.courseSecondChoice);
-      data.append("GDPR Consent", formData.gdprConsent);
-      data.append("Digital Signature", formData.signature);
-
-      // Files
-      Object.keys(formData.docs || {}).forEach((key) => {
-        const value = formData.docs[key];
-        if (Array.isArray(value)) {
-          value.forEach((file: any) => {
-            if (file instanceof File) data.append(`${key}[]`, file);
-          });
-        } else if (value instanceof File) {
-          data.append(key, value);
-        }
-      });
-
-      const res = await fetch(FORMSPREE_ENDPOINT, {
-        method: "POST",
-        body: data,
-        headers: {
-          Accept: "application/json",
-        },
-      });
-
-      if (!res.ok) {
-        const body = await res.json();
-        throw new Error(body?.error || "Submission failed");
-      }
-
-      setShowSuccess(true);
-    } catch (err: any) {
-      setError(err.message || "Submission failed");
-    } finally {
-      setSubmitting(false);
-    }
-  };
+  /**
+   * NOTE: The final "Submit" button is now in the Parent (Apply.tsx)
+   * This page only collects the GDPR consent and the Signature.
+   */
 
   return (
     <div className="space-y-10 pb-10">
@@ -122,7 +71,8 @@ const Apply4 = () => {
         </p>
 
         <RadioGroup
-          onValueChange={(val: any) => updateFields({ gdprConsent: val })}
+          value={formData.gdprConsent}
+          onValueChange={(val: string) => updateFields({ gdprConsent: val })}
           className="space-y-4"
         >
           <div className="flex items-center space-x-3 bg-white dark:bg-slate-800 p-4 rounded-2xl border">
@@ -147,41 +97,18 @@ const Apply4 = () => {
         </p>
 
         <Input
+          value={formData.signature}
           placeholder="Type Full Name..."
           className="h-16 rounded-2xl px-6 text-xl italic font-serif"
           onChange={(e) => updateFields({ signature: e.target.value })}
         />
       </div>
 
-      {/* Submit */}
-      <div className="flex flex-col gap-4">
-        <button
-          onClick={handleFinalSubmit}
-          disabled={
-            submitting ||
-            formData.gdprConsent !== "agree" ||
-            formData.signature?.length < 3
-          }
-          className="px-12 py-5 bg-[#1e3a5f] text-white rounded-2xl font-black uppercase shadow-2xl flex items-center justify-center gap-3 disabled:opacity-40"
-        >
-          {submitting ? (
-            <>
-              <Loader2 className="animate-spin" size={20} />
-              Encrypting & Sending...
-            </>
-          ) : (
-            "Finalize Application"
-          )}
-        </button>
+      {/* IMPORTANT: The "Finalize Application" button is rendered by the PARENT (Apply.tsx)
+          using the handleNext function which calls submitApplication.
+      */}
 
-        {error && (
-          <p className="text-red-500 text-xs font-black uppercase tracking-widest text-center">
-            {error}
-          </p>
-        )}
-      </div>
-
-      {/* Success Dialog */}
+      {/* Success Dialog (triggered when parent navigates or can be managed via context) */}
       <Dialog open={showSuccess}>
         <DialogContent className="sm:max-w-md rounded-[3rem] p-12">
           <div className="flex flex-col items-center text-center space-y-8">
@@ -191,7 +118,7 @@ const Apply4 = () => {
                 Submission Complete
               </DialogTitle>
               <DialogDescription>
-                Redirecting in {countdown}
+                Redirecting in {countdown}...
               </DialogDescription>
             </DialogHeader>
 

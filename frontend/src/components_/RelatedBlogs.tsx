@@ -1,36 +1,66 @@
-import { useState, useEffect, useCallback } from "react"
-import { motion, AnimatePresence } from "framer-motion"
-import { ChevronRight } from "lucide-react"
+import { useGetAllPosts } from "@/hooks/useBlog"
+import { AnimatePresence, motion } from "framer-motion"
+import { ChevronRight, Loader2 } from "lucide-react"
+import { useCallback, useEffect, useMemo, useState } from "react"
 import { Link } from "react-router-dom"
-// import { cn } from "@/lib/utils"
 
-// A larger pool of blogs to shuffle from
-const ALL_BLOGS = [
-  { id: 1, title: "Modern Campus Tech", image: "https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?w=400", category: "Tech" },
-  { id: 2, title: "Student Success Stories", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?w=400", category: "Education" },
-  { id: 3, title: "Learning in 2026", image: "https://images.unsplash.com/photo-1501503069356-3c6b82a17d89?w=400", category: "Future" },
-  { id: 4, title: "Digital Research", image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=400", category: "Innovation" },
-  { id: 5, title: "Global Connectivity", image: "https://images.unsplash.com/photo-1523580494863-6f3031224c94?w=400", category: "University" },
-  { id: 6, title: "Classroom Design", image: "https://images.unsplash.com/photo-1509062522246-3755977927d7?w=400", category: "Design" },
-]
+interface RelatedBlogsProps {
+  currentCategoryId?: string;
+  excludeId?: string;
+}
 
-const RelatedBlogs = () => {
-  const [displayedBlogs, setDisplayedBlogs] = useState(ALL_BLOGS.slice(0, 3))
+const RelatedBlogs = ({ currentCategoryId, excludeId }: RelatedBlogsProps) => {
+  const [displayedBlogs, setDisplayedBlogs] = useState<any[]>([])
+
+  // Fetch posts from the service
+  // We fetch a slightly larger pool (e.g., 10) to shuffle from
+  const { data, isLoading } = useGetAllPosts({
+    search: currentCategoryId, // Use the category name as a search term for "related"
+    limit: "10",
+    status: "published"
+  })
+
+  // Filter out the current post and prepare the pool
+  const pool = useMemo(() => {
+    if (!data?.posts) return []
+    return data.posts.filter(post => post.id !== excludeId)
+  }, [data, excludeId])
 
   const shuffleBlogs = useCallback(() => {
-    // Shuffle algorithm (Fisher-Yates)
-    const shuffled = [...ALL_BLOGS].sort(() => 0.5 - Math.random())
+    if (pool.length === 0) return
+    
+    // Shuffle the pool and pick the top 3
+    const shuffled = [...pool].sort(() => 0.5 - Math.random())
     setDisplayedBlogs(shuffled.slice(0, 3))
-  }, [])
+  }, [pool])
 
+  // Initial set when pool is loaded
   useEffect(() => {
-    const interval = setInterval(shuffleBlogs, 10000)
-    return () => clearInterval(interval)
-  }, [shuffleBlogs])
+    if (pool.length > 0) {
+      shuffleBlogs()
+    }
+  }, [pool, shuffleBlogs])
+
+  // Periodic shuffle every 10 seconds for visual flair
+  useEffect(() => {
+    if (pool.length > 3) {
+      const interval = setInterval(shuffleBlogs, 10000)
+      return () => clearInterval(interval)
+    }
+  }, [pool.length, shuffleBlogs])
+
+  if (isLoading) {
+    return (
+      <div className="flex justify-center py-12">
+        <Loader2 className="h-8 w-8 animate-spin text-slate-300" />
+      </div>
+    )
+  }
+
+  if (pool.length === 0) return null
 
   return (
     <div className="space-y-8">
-      
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
         <AnimatePresence mode="wait">
           {displayedBlogs.map((post, index) => (
@@ -44,15 +74,15 @@ const RelatedBlogs = () => {
               className="group bg-white dark:bg-slate-900 rounded-[2rem] overflow-hidden border border-slate-100 dark:border-slate-800 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col h-full"
             >
               {/* Image Container */}
-              <Link to={`/blogs/${post.id}`} className="relative h-48 overflow-hidden">
+              <Link to={`/blogs/${post.slug}`} className="relative h-48 overflow-hidden">
                 <img 
-                  src={post.image} 
+                  src={post.featured_image_url || "/placeholder-blog.jpg"} 
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" 
                   alt={post.title} 
                 />
                 <div className="absolute top-4 left-4">
                   <span className="bg-[#1e3a5f] text-white text-[10px] font-bold uppercase px-3 py-1 rounded-full">
-                    {post.category}
+                    {post.seo_keywords?.[0] || "Blog"}
                   </span>
                 </div>
               </Link>
@@ -60,19 +90,22 @@ const RelatedBlogs = () => {
               {/* Content Container */}
               <div className="p-6 flex flex-col flex-1 justify-between">
                 <div>
-                  <Link to={`/blogs/${post.id}`}>
-                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mt-1 group-hover:text-[#1e3a5f] dark:group-hover:text-blue-400 transition-colors uppercase leading-tight">
+                  <Link to={`/blogs/${post.slug}`}>
+                    <h4 className="text-lg font-bold text-slate-900 dark:text-white mt-1 group-hover:text-[#1e3a5f] dark:group-hover:text-blue-400 transition-colors uppercase leading-tight line-clamp-2">
                       {post.title}
                     </h4>
                   </Link>
                   <p className="text-sm text-slate-500 mt-3 line-clamp-2 leading-relaxed">
-                    Their feedback reflects our commitment to quality, reliability, and excellence.
+                    {post.excerpt || "Explore our latest insights and stories regarding this topic."}
                   </p>
                 </div>
 
-                <div className="mt-6 flex justify-end">
+                <div className="mt-6 flex justify-between items-center">
+                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">
+                    {post.published_at ? new Date(post.published_at).toLocaleDateString() : ""}
+                  </span>
                   <Link 
-                    to={`/blogs/${post.id}`}
+                    to={`/blogs/${post.slug}`}
                     className="p-3 rounded-full border border-slate-200 dark:border-slate-800 text-[#1e3a5f] dark:text-blue-400 hover:bg-[#1e3a5f] hover:text-white hover:border-[#1e3a5f] transition-all duration-300"
                   >
                     <ChevronRight size={20} />

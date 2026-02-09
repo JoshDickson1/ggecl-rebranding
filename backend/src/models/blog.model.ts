@@ -145,6 +145,8 @@ class BlogModel {
 
     const { data, error, count } = await query;
 
+    console.log('this is the post at the backend', data)
+
     if (error) throw new DatabaseError(error.message, error.code);
     return { posts: data || [], total: count || 0 };
   }
