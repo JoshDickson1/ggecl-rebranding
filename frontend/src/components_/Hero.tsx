@@ -1,3 +1,4 @@
+import { cn } from "@/lib/utils";
 import { motion, easeInOut } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 
@@ -109,11 +110,23 @@ const Hero = () => {
 
         {/* Right Side: Animated Image Composition */}
         <motion.div
-          animate={floatAnimation}
-          className="relative w-full aspect-square md:aspect-auto z-1 h-full min-h-[200px] md:min-h-[600px]"
-        >
-          <img src="hero.png" alt="" className="" />
-        </motion.div>
+  animate={floatAnimation}
+  className={cn(
+    "relative w-full aspect-square md:aspect-auto z-1 h-full min-h-[200px] md:min-h-[600px]",
+    // Base desktop (MacBook 13")
+    "md:pt-4", 
+    // Just a touch more for larger screens (15"+)
+    "lg:pt-10",
+    // Max nudge for huge monitors
+    "xl:pt-14"
+  )}
+>
+  <img 
+    src="hero.png" 
+    alt="" 
+    className="w-full h-auto object-contain" 
+  />
+</motion.div>
 
       </div>
       
