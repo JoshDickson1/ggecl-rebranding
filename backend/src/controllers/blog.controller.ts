@@ -109,8 +109,6 @@ export const getAllPosts = async (
       isAdmin
     } = req.query;
 
-
-
     const filters: BlogFilters = {
       status: status as string,
       author_id: author_id as string,
